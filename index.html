@@ -1,82 +1,440 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>恋のおまじない</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #eaf9ff, #d9edff);
-      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-      color: #526b7a;
-      text-align: center;
-    }
+<title>そらくんへの秘密のおまじない</title>
 
-    .card {
-      width: 85%;
-      max-width: 500px;
-      padding: 45px 25px;
-      background: rgba(255,255,255,0.75);
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(80,120,150,0.15);
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    .moon {
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
 
-    h1 {
-      font-size: 24px;
-      font-weight: normal;
-      letter-spacing: 3px;
-      margin-bottom: 30px;
-    }
+body {
+  overflow: hidden;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
 
-    p {
-      line-height: 2.2;
-      font-size: 15px;
-      letter-spacing: 1px;
-    }
+  color: #eefaff;
 
-    .name {
-      margin-top: 35px;
-      font-size: 17px;
-      letter-spacing: 2px;
-    }
-  </style>
+  background:
+    radial-gradient(circle at 50% 15%, #527f9d 0%, transparent 35%),
+    linear-gradient(
+      180deg,
+      #071a31 0%,
+      #0a2946 45%,
+      #0c4260 100%
+    );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 星 */
+.star {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,100% {
+    opacity: 0.2;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+/* 月 */
+.moon {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background: #eafaff;
+
+  box-shadow:
+    0 0 15px #bcefff,
+    0 0 45px rgba(170,230,255,0.5);
+
+  overflow: hidden;
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background: #071a31;
+
+  left: 22px;
+  top: -8px;
+}
+
+/* メインカード */
+.card {
+  position: relative;
+  z-index: 5;
+
+  width: 88%;
+  max-width: 520px;
+
+  padding: 45px 25px;
+
+  text-align: center;
+
+  background: rgba(10,35,58,0.58);
+
+  border: 1px solid rgba(210,245,255,0.25);
+
+  border-radius: 28px;
+
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 0 40px rgba(90,190,230,0.12);
+}
+
+.small {
+  font-size: 13px;
+  letter-spacing: 4px;
+  opacity: 0.8;
+
+  margin-bottom: 15px;
+}
+
+h1 {
+  margin: 0;
+
+  font-size: 27px;
+
+  font-weight: normal;
+
+  letter-spacing: 4px;
+
+  line-height: 1.8;
+
+  text-shadow:
+    0 0 10px rgba(190,240,255,0.5);
+}
+
+.message {
+  margin-top: 25px;
+
+  min-height: 90px;
+
+  line-height: 2.2;
+
+  font-size: 15px;
+
+  letter-spacing: 2px;
+}
+
+button {
+  margin-top: 25px;
+
+  padding: 14px 28px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(220,250,255,0.55);
+
+  background: rgba(150,220,245,0.12);
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+button:hover {
+  background: rgba(180,235,255,0.25);
+
+  box-shadow:
+    0 0 20px rgba(170,235,255,0.35);
+
+  transform: translateY(-2px);
+}
+
+/* サメ */
+.shark {
+  position: fixed;
+
+  left: -100px;
+
+  font-size: 32px;
+
+  opacity: 0.75;
+
+  animation: swim 13s linear infinite;
+
+  z-index: 2;
+}
+
+@keyframes swim {
+  0% {
+    left: -100px;
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+
+  100% {
+    left: 110%;
+    transform: translateY(0);
+  }
+}
+
+/* 隠しメッセージ */
+.secret {
+  display: none;
+
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 最後の言葉 */
+.final {
+  margin-top: 30px;
+
+  font-size: 17px;
+
+  line-height: 2;
+
+  letter-spacing: 2px;
+
+  color: #e9fbff;
+
+  text-shadow:
+    0 0 12px rgba(180,240,255,0.6);
+}
+
+/* キラキラ */
+.sparkle {
+  position: fixed;
+
+  pointer-events: none;
+
+  animation: sparkle 1.5s ease-out forwards;
+
+  z-index: 10;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: scale(0.5) translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.8) translateY(-80px);
+  }
+}
+</style>
 </head>
+
 
 <body>
 
-  <div class="card">
+<!-- 星 -->
+<div class="star" style="top:10%;left:15%;"></div>
+<div class="star" style="top:20%;left:35%;animation-delay:1s;"></div>
+<div class="star" style="top:15%;left:70%;animation-delay:2s;"></div>
+<div class="star" style="top:32%;left:82%;animation-delay:.5s;"></div>
+<div class="star" style="top:65%;left:12%;animation-delay:1.5s;"></div>
+<div class="star" style="top:75%;left:88%;animation-delay:2.5s;"></div>
+<div class="star" style="top:85%;left:30%;animation-delay:.8s;"></div>
+<div class="star" style="top:55%;left:75%;animation-delay:1.8s;"></div>
 
-    <div class="moon">🌙</div>
+<!-- 月 -->
+<div class="moon"></div>
 
-    <h1>恋のおまじない</h1>
+<!-- サメ -->
+<div class="shark">🦈</div>
 
-    <p>
-      どうか今日も<br>
-      あなたが笑っていますように。<br><br>
 
-      遠くからでも<br>
-      あなたの幸せを願えますように。<br><br>
+<div class="card">
 
-      そしていつか<br>
-      この想いがあなたに届きますように。
-    </p>
+  <div id="intro">
 
-    <div class="name">
+    <div class="small">SECRET SPELL</div>
+
+    <h1>
+      そらくんへの<br>
+      秘密のおまじない
+    </h1>
+
+    <div class="message">
+      大切な人を、ひとり<br>
+      思い浮かべてね。
+    </div>
+
+    <button onclick="startSpell()">
+      ✨ おまじないをかける ✨
+    </button>
+
+  </div>
+
+
+  <div id="spell" class="secret">
+
+    <div class="small">YOUR WISH</div>
+
+    <div class="message" id="text"></div>
+
+    <div id="final" class="final" style="display:none;">
+      このおまじないが<br>
+      そらくんに届きますように。<br><br>
+
       あたしの好きな推し、楠木そらくんへ🦈🌌
     </div>
 
   </div>
+
+</div>
+
+
+<script>
+
+const messages = [
+
+"あなたの想いを、<br>夜空にそっと預けます。",
+
+"そらくんが今日も<br>笑っていますように。",
+
+"そらくんの毎日が<br>たくさんの幸せで包まれますように。",
+
+"これからもずっと<br>素敵な景色を見られますように。"
+
+];
+
+
+let index = 0;
+
+
+function startSpell() {
+
+  document.getElementById("intro").style.display = "none";
+
+  document.getElementById("spell").style.display = "block";
+
+  createSparkles();
+
+  showMessage();
+
+}
+
+
+function showMessage() {
+
+  if(index < messages.length) {
+
+    document.getElementById("text").innerHTML =
+      messages[index];
+
+    index++;
+
+    setTimeout(showMessage, 2800);
+
+  } else {
+
+    setTimeout(() => {
+
+      document.getElementById("final").style.display =
+        "block";
+
+      createSparkles();
+
+    }, 1000);
+
+  }
+
+}
+
+
+/* キラキラを出す */
+
+function createSparkles() {
+
+  for(let i = 0; i < 25; i++) {
+
+    const sparkle = document.createElement("div");
+
+    sparkle.className = "sparkle";
+
+    sparkle.innerHTML = "✦";
+
+    sparkle.style.left =
+      Math.random() * 100 + "vw";
+
+    sparkle.style.top =
+      Math.random() * 100 + "vh";
+
+    sparkle.style.fontSize =
+      (10 + Math.random() * 15) + "px";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+
+      sparkle.remove();
+
+    }, 1500);
+
+  }
+
+}
+
+</script>
 
 </body>
 </html>
