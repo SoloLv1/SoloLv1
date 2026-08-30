@@ -1,440 +1,1586 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ひみつのおまじない</title>
+<title>2025.11.28~ 🦈🌌</title>
 
 <style>
+
+/* =====================================================
+   BASIC
+===================================================== */
+
 * {
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  overflow: hidden;
-  font-family:
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    serif;
+  margin: 0;
+  background: #01030c;
+  color: #fff;
 
-  color: #eefaff;
+  font-family:
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+
+/* =====================================================
+   SPACE BACKGROUND
+===================================================== */
+
+.space {
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  overflow: hidden;
 
   background:
-    radial-gradient(circle at 50% 15%, #527f9d 0%, transparent 35%),
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(65,145,255,.20),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(80,110,255,.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 65%,
+      rgba(80,190,255,.10),
+      transparent 35%
+    ),
     linear-gradient(
       180deg,
-      #071a31 0%,
-      #0a2946 45%,
-      #0c4260 100%
+      #01030c 0%,
+      #02091b 50%,
+      #01030c 100%
     );
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transition:
+    background 3s ease;
 }
 
-/* 星 */
-.star {
-  position: fixed;
-  width: 3px;
-  height: 3px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: twinkle 3s infinite ease-in-out;
-}
 
-@keyframes twinkle {
-  0%,100% {
-    opacity: 0.2;
-    transform: scale(0.7);
-  }
+/* =====================================================
+   STARS
+===================================================== */
 
-  50% {
-    opacity: 1;
-    transform: scale(1.4);
-  }
-}
+.stars,
+.stars::before,
+.stars::after {
 
-/* 月 */
-.moon {
   position: absolute;
-  top: 8%;
-  right: 12%;
+  inset: -20%;
 
-  width: 70px;
-  height: 70px;
-
-  border-radius: 50%;
-
-  background: #eafaff;
-
-  box-shadow:
-    0 0 15px #bcefff,
-    0 0 45px rgba(170,230,255,0.5);
-
-  overflow: hidden;
-}
-
-.moon::after {
   content: "";
-  position: absolute;
 
-  width: 70px;
-  height: 70px;
+  background-image:
 
-  border-radius: 50%;
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.95) 1px,
+      transparent 1.6px
+    ),
 
-  background: #071a31;
+    radial-gradient(
+      circle,
+      rgba(180,225,255,.85) 1px,
+      transparent 1.6px
+    ),
 
-  left: 22px;
-  top: -8px;
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.55) .8px,
+      transparent 1.4px
+    );
+
+  background-size:
+    145px 145px,
+    220px 220px,
+    310px 310px;
+
+  background-position:
+    0 0,
+    80px 100px,
+    150px 50px;
+
+  animation:
+    starsMove 55s linear infinite;
+
+  opacity: .62;
 }
 
-/* メインカード */
-.card {
-  position: relative;
-  z-index: 5;
 
-  width: 88%;
-  max-width: 520px;
-
-  padding: 45px 25px;
-
-  text-align: center;
-
-  background: rgba(10,35,58,0.58);
-
-  border: 1px solid rgba(210,245,255,0.25);
-
-  border-radius: 28px;
-
-  backdrop-filter: blur(8px);
-
-  box-shadow:
-    0 0 40px rgba(90,190,230,0.12);
+.stars::before {
+  transform: scale(1.3);
+  animation-duration: 80s;
+  opacity: .30;
 }
 
-.small {
-  font-size: 13px;
-  letter-spacing: 4px;
-  opacity: 0.8;
 
-  margin-bottom: 15px;
+.stars::after {
+  transform: scale(1.7);
+  animation-duration: 120s;
+  opacity: .20;
 }
 
-h1 {
-  margin: 0;
 
-  font-size: 27px;
+@keyframes starsMove {
 
-  font-weight: normal;
-
-  letter-spacing: 4px;
-
-  line-height: 1.8;
-
-  text-shadow:
-    0 0 10px rgba(190,240,255,0.5);
-}
-
-.message {
-  margin-top: 25px;
-
-  min-height: 90px;
-
-  line-height: 2.2;
-
-  font-size: 15px;
-
-  letter-spacing: 2px;
-}
-
-button {
-  margin-top: 25px;
-
-  padding: 14px 28px;
-
-  border-radius: 999px;
-
-  border: 1px solid rgba(220,250,255,0.55);
-
-  background: rgba(150,220,245,0.12);
-
-  color: white;
-
-  font-family: inherit;
-
-  font-size: 14px;
-
-  letter-spacing: 2px;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-button:hover {
-  background: rgba(180,235,255,0.25);
-
-  box-shadow:
-    0 0 20px rgba(170,235,255,0.35);
-
-  transform: translateY(-2px);
-}
-
-/* サメ */
-.shark {
-  position: fixed;
-
-  left: -100px;
-
-  font-size: 32px;
-
-  opacity: 0.75;
-
-  animation: swim 13s linear infinite;
-
-  z-index: 2;
-}
-
-@keyframes swim {
-  0% {
-    left: -100px;
+  from {
     transform: translateY(0);
   }
 
-  50% {
-    transform: translateY(-18px);
+  to {
+    transform: translateY(180px);
+  }
+
+}
+
+
+/* =====================================================
+   SHOOTING STARS
+===================================================== */
+
+.shooting-star {
+
+  position: fixed;
+
+  width: 150px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(160,220,255,.45),
+      #fff
+    );
+
+  transform: rotate(-30deg);
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(180,230,255,.9)
+    );
+
+  opacity: 0;
+
+  z-index: -5;
+}
+
+
+.shooting-star:nth-child(2) {
+
+  top: 15%;
+  left: 90%;
+
+  animation:
+    shooting 8s linear infinite;
+
+}
+
+
+.shooting-star:nth-child(3) {
+
+  top: 38%;
+  left: 25%;
+
+  animation:
+    shooting 12s 4s linear infinite;
+
+}
+
+
+.shooting-star:nth-child(4) {
+
+  top: 65%;
+  left: 85%;
+
+  animation:
+    shooting 14s 8s linear infinite;
+
+}
+
+
+@keyframes shooting {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translate(0,0)
+      rotate(-30deg);
+
+  }
+
+  82% {
+
+    opacity: 0;
+
+  }
+
+  86% {
+
+    opacity: 1;
+
   }
 
   100% {
-    left: 110%;
+
+    opacity: 0;
+
+    transform:
+      translate(-380px,380px)
+      rotate(-30deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   COMMON
+===================================================== */
+
+section {
+
+  min-height: 100vh;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    80px 20px;
+
+  position: relative;
+
+}
+
+
+.inner {
+
+  width:
+    min(850px, 100%);
+
+  text-align: center;
+
+}
+
+
+.english {
+
+  font-size: 10px;
+
+  letter-spacing: .45em;
+
+  opacity: .45;
+
+}
+
+
+.glow {
+
+  text-shadow:
+
+    0 0 12px
+    rgba(160,225,255,.85),
+
+    0 0 35px
+    rgba(80,160,255,.55),
+
+    0 0 70px
+    rgba(80,160,255,.25);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+#hero {
+
+  min-height: 100vh;
+
+}
+
+
+.shark {
+
+  font-size: 38px;
+
+  margin-bottom: 22px;
+
+  filter:
+    drop-shadow(
+      0 0 12px
+      rgba(150,220,255,.7)
+    );
+
+  animation:
+    sharkFloat 4s ease-in-out infinite;
+
+}
+
+
+@keyframes sharkFloat {
+
+  0%,100% {
     transform: translateY(0);
   }
+
+  50% {
+    transform: translateY(-9px);
+  }
+
 }
 
-/* 隠しメッセージ */
-.secret {
-  display: none;
 
-  animation: fadeIn 2s ease forwards;
+.date {
+
+  font-size:
+    clamp(30px, 8vw, 65px);
+
+  font-weight: 300;
+
+  letter-spacing: .08em;
+
+  text-shadow:
+
+    0 0 12px
+    rgba(160,225,255,.9),
+
+    0 0 40px
+    rgba(80,160,255,.6),
+
+    0 0 80px
+    rgba(80,160,255,.3);
+
+  animation:
+    datePulse 3s ease-in-out infinite alternate;
+
 }
 
-@keyframes fadeIn {
+
+@keyframes datePulse {
+
   from {
-    opacity: 0;
-    transform: translateY(15px);
+    opacity: .72;
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
   }
+
 }
 
-/* 最後の言葉 */
-.final {
-  margin-top: 30px;
+
+.subtitle {
+
+  margin-top: 25px;
+
+  font-size: 13px;
+
+  letter-spacing: .25em;
+
+  opacity: .6;
+
+}
+
+
+.scroll {
+
+  position: absolute;
+
+  bottom: 28px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  font-size: 9px;
+
+  letter-spacing: .4em;
+
+  opacity: .4;
+
+}
+
+
+/* =====================================================
+   STORY
+===================================================== */
+
+.story-card {
+
+  padding:
+    48px 28px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
+  border-radius: 30px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  backdrop-filter:
+    blur(10px);
+
+  box-shadow:
+
+    0 0 50px
+    rgba(50,120,220,.08),
+
+    inset 0 0 30px
+    rgba(255,255,255,.015);
+
+}
+
+
+.story-title {
+
+  font-size:
+    clamp(25px, 6vw, 40px);
+
+  font-weight: 300;
+
+  letter-spacing: .15em;
+
+  margin-bottom: 35px;
+
+}
+
+
+.story-text {
+
+  font-size: 14px;
+
+  line-height: 2.5;
+
+  letter-spacing: .06em;
+
+  color:
+    rgba(255,255,255,.82);
+
+}
+
+
+/* =====================================================
+   STAR LINE
+===================================================== */
+
+.star-line {
+
+  width: 190px;
+
+  height: 1px;
+
+  margin:
+    45px auto;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(180,230,255,.8),
+      transparent
+    );
+
+  box-shadow:
+    0 0 10px
+    rgba(150,220,255,.6);
+
+}
+
+
+/* =====================================================
+   FAVORITE POINTS
+===================================================== */
+
+.favorite {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(230px, 1fr)
+    );
+
+  gap: 18px;
+
+  margin-top: 45px;
+
+}
+
+
+.favorite-item {
+
+  padding:
+    30px 20px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.09);
+
+  border-radius: 24px;
+
+  background:
+    rgba(255,255,255,.025);
+
+  transition:
+    transform .4s ease,
+    background .4s ease,
+    box-shadow .4s ease;
+
+}
+
+
+.favorite-item:hover {
+
+  transform:
+    translateY(-6px);
+
+  background:
+    rgba(130,200,255,.06);
+
+  box-shadow:
+    0 0 30px
+    rgba(100,180,255,.10);
+
+}
+
+
+.favorite-icon {
+
+  font-size: 25px;
+
+  margin-bottom: 15px;
+
+}
+
+
+.favorite-item h3 {
+
+  margin:
+    0 0 12px;
 
   font-size: 17px;
 
+  font-weight: 400;
+
+  letter-spacing: .08em;
+
+}
+
+
+.favorite-item p {
+
+  margin: 0;
+
+  font-size: 13px;
+
   line-height: 2;
 
-  letter-spacing: 2px;
+  opacity: .7;
 
-  color: #e9fbff;
-
-  text-shadow:
-    0 0 12px rgba(180,240,255,0.6);
 }
 
-/* キラキラ */
-.sparkle {
-  position: fixed;
 
-  pointer-events: none;
+/* =====================================================
+   CONSTELLATION
+===================================================== */
 
-  animation: sparkle 1.5s ease-out forwards;
+.constellation {
+
+  position: relative;
+
+  width:
+    min(550px, 90%);
+
+  height: 180px;
+
+  margin:
+    45px auto;
+
+}
+
+
+.constellation .star {
+
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  background: #fff;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 12px
+    rgba(190,235,255,1);
+
+  animation:
+    twinkle 2.5s
+    ease-in-out
+    infinite
+    alternate;
+
+}
+
+
+.constellation .star:nth-child(1) {
+  left: 8%;
+  top: 60%;
+}
+
+.constellation .star:nth-child(2) {
+  left: 28%;
+  top: 25%;
+}
+
+.constellation .star:nth-child(3) {
+  left: 48%;
+  top: 58%;
+}
+
+.constellation .star:nth-child(4) {
+  left: 68%;
+  top: 20%;
+}
+
+.constellation .star:nth-child(5) {
+  left: 91%;
+  top: 60%;
+}
+
+
+@keyframes twinkle {
+
+  from {
+    opacity: .3;
+    transform: scale(.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+
+}
+
+
+/* =====================================================
+   ENDING
+===================================================== */
+
+#ending {
+
+  min-height: 140vh;
+
+  overflow: hidden;
+
+  transition:
+    background 3s ease;
+
+}
+
+
+.ending-content {
+
+  position: relative;
 
   z-index: 10;
+
 }
 
-@keyframes sparkle {
+
+.last-word {
+
+  font-size: 10px;
+
+  letter-spacing: .5em;
+
+  opacity: .4;
+
+  margin-bottom: 55px;
+
+}
+
+
+/* =====================================================
+   「推しがだいすきなあたし」
+===================================================== */
+
+.love-text {
+
+  font-size:
+    clamp(
+      23px,
+      6vw,
+      48px
+    );
+
+  line-height: 1.8;
+
+  letter-spacing: .12em;
+
+  font-weight: 300;
+
+  opacity: 0;
+
+  transform:
+    translateY(25px);
+
+  animation:
+    loveAppear 3s
+    .8s
+    forwards;
+
+}
+
+
+@keyframes loveAppear {
+
   0% {
-    opacity: 1;
-    transform: scale(0.5) translateY(0);
+
+    opacity: 0;
+
+    transform:
+      translateY(25px);
+
+    filter:
+      blur(12px);
+
+  }
+
+  60% {
+
+    opacity: .8;
+
+    filter:
+      blur(2px);
+
   }
 
   100% {
-    opacity: 0;
-    transform: scale(1.8) translateY(-80px);
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter:
+      blur(0);
+
   }
+
 }
+
+
+/* =====================================================
+   最後の言葉
+===================================================== */
+
+.final-love {
+
+  margin-top: 55px;
+
+  font-size:
+    clamp(
+      25px,
+      7vw,
+      60px
+    );
+
+  line-height: 1.9;
+
+  letter-spacing: .08em;
+
+  font-weight: 300;
+
+  opacity: 0;
+
+  transform:
+    scale(.72);
+
+  filter:
+    blur(15px);
+
+  animation:
+    finalAppear 5s
+    3.5s
+    forwards;
+
+}
+
+
+@keyframes finalAppear {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      scale(.72);
+
+    filter:
+      blur(15px);
+
+    text-shadow:
+      0 0 0
+      rgba(180,230,255,0);
+
+  }
+
+  35% {
+
+    opacity: .55;
+
+    transform:
+      scale(1.07);
+
+    filter:
+      blur(4px);
+
+  }
+
+  65% {
+
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+    filter:
+      blur(0);
+
+    text-shadow:
+
+      0 0 12px
+      rgba(190,235,255,.9),
+
+      0 0 40px
+      rgba(100,180,255,.7),
+
+      0 0 90px
+      rgba(90,160,255,.4);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+    filter:
+      blur(0);
+
+    text-shadow:
+
+      0 0 14px
+      rgba(190,235,255,1),
+
+      0 0 45px
+      rgba(100,180,255,.75),
+
+      0 0 100px
+      rgba(90,160,255,.45);
+
+  }
+
+}
+
+
+/* =====================================================
+   FINAL LIGHT BURST
+===================================================== */
+
+.final-light {
+
+  position: absolute;
+
+  left: 50%;
+  top: 52%;
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  transform:
+    translate(-50%,-50%)
+    scale(.2);
+
+  opacity: 0;
+
+  box-shadow:
+
+    0 0 20px 10px
+    rgba(190,235,255,.8),
+
+    0 0 90px 40px
+    rgba(90,170,255,.35);
+
+  animation:
+    finalBurst 7s
+    4.5s
+    forwards;
+
+}
+
+
+@keyframes finalBurst {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(.2);
+
+  }
+
+  18% {
+
+    opacity: .85;
+
+  }
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(42);
+
+  }
+
+}
+
+
+/* =====================================================
+   EXTRA FINAL SHOOTING STAR
+===================================================== */
+
+.final-shooting {
+
+  position: absolute;
+
+  width: 230px;
+  height: 2px;
+
+  top: 47%;
+  left: 100%;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(180,230,255,.7),
+      white
+    );
+
+  transform:
+    rotate(-25deg);
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(180,230,255,.9)
+    );
+
+  animation:
+    finalShooting 3s
+    5.3s
+    forwards;
+
+}
+
+
+@keyframes finalShooting {
+
+  0% {
+
+    opacity: 0;
+
+    left: 100%;
+
+  }
+
+  15% {
+
+    opacity: 1;
+
+  }
+
+  100% {
+
+    opacity: 0;
+
+    left: -30%;
+
+  }
+
+}
+
+
+/* =====================================================
+   FOREVER
+===================================================== */
+
+.forever {
+
+  margin-top: 85px;
+
+  font-size: 11px;
+
+  letter-spacing: .35em;
+
+  opacity: 0;
+
+  animation:
+    foreverAppear 3s
+    7s
+    forwards;
+
+}
+
+
+@keyframes foreverAppear {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: .45;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  section {
+
+    padding:
+      60px 18px;
+
+  }
+
+
+  .story-card {
+
+    padding:
+      38px 20px;
+
+  }
+
+
+  .story-text {
+
+    font-size: 13px;
+
+    line-height: 2.35;
+
+  }
+
+
+  .favorite {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .final-love {
+
+    letter-spacing:
+      .04em;
+
+  }
+
+}
+
 </style>
 </head>
 
 
+
 <body>
 
-<!-- 星 -->
-<div class="star" style="top:10%;left:15%;"></div>
-<div class="star" style="top:20%;left:35%;animation-delay:1s;"></div>
-<div class="star" style="top:15%;left:70%;animation-delay:2s;"></div>
-<div class="star" style="top:32%;left:82%;animation-delay:.5s;"></div>
-<div class="star" style="top:65%;left:12%;animation-delay:1.5s;"></div>
-<div class="star" style="top:75%;left:88%;animation-delay:2.5s;"></div>
-<div class="star" style="top:85%;left:30%;animation-delay:.8s;"></div>
-<div class="star" style="top:55%;left:75%;animation-delay:1.8s;"></div>
 
-<!-- 月 -->
-<div class="moon"></div>
+<!-- ==================================================
+     BACKGROUND
+================================================== -->
 
-<!-- サメ -->
-<div class="shark">🦈</div>
+<div class="space">
 
+  <div class="stars"></div>
 
-<div class="card">
+  <div class="shooting-star"></div>
 
-  <div id="intro">
+  <div class="shooting-star"></div>
 
-    <div class="small">SECRET SPELL</div>
-
-    <h1>
-      そらくんへの<br>
-      秘密のおまじない
-    </h1>
-
-    <div class="message">
-      大切な人を、ひとり<br>
-      思い浮かべてね。
-    </div>
-
-    <button onclick="startSpell()">
-      ✨ おまじないをかける ✨
-    </button>
-
-  </div>
-
-
-  <div id="spell" class="secret">
-
-    <div class="small">YOUR WISH</div>
-
-    <div class="message" id="text"></div>
-
-    <div id="final" class="final" style="display:none;">
-      このおまじないが<br>
-      そらくんに届きますように。<br><br>
-
-      あたしの大好きな推し、楠木そらくんへ🦈🌌
-    </div>
-
-  </div>
+  <div class="shooting-star"></div>
 
 </div>
 
 
-<script>
 
-const messages = [
+<!-- ==================================================
+     01
+     2025.11.28
+================================================== -->
 
-"あなたの想いを、<br>夜空にそっと預けます。",
+<section id="hero">
 
-"そらくんが今日も<br>笑っていますように。",
+  <div class="inner">
 
-"そらくんの毎日が<br>たくさんの幸せで包まれますように。",
-
-"これからもずっと<br>素敵な景色を見られますように。"
-
-];
-
-
-let index = 0;
+    <div class="shark">
+      🦈
+    </div>
 
 
-function startSpell() {
-
-  document.getElementById("intro").style.display = "none";
-
-  document.getElementById("spell").style.display = "block";
-
-  createSparkles();
-
-  showMessage();
-
-}
+    <div class="english">
+      THE DAY EVERYTHING STARTED
+    </div>
 
 
-function showMessage() {
+    <div class="date">
 
-  if(index < messages.length) {
+      2025.11.28~
 
-    document.getElementById("text").innerHTML =
-      messages[index];
-
-    index++;
-
-    setTimeout(showMessage, 2800);
-
-  } else {
-
-    setTimeout(() => {
-
-      document.getElementById("final").style.display =
-        "block";
-
-      createSparkles();
-
-    }, 1000);
-
-  }
-
-}
+    </div>
 
 
-/* キラキラを出す */
+    <div class="subtitle">
 
-function createSparkles() {
+      🦈 🌌
 
-  for(let i = 0; i < 25; i++) {
+    </div>
 
-    const sparkle = document.createElement("div");
+  </div>
 
-    sparkle.className = "sparkle";
 
-    sparkle.innerHTML = "✦";
+  <div class="scroll">
 
-    sparkle.style.left =
-      Math.random() * 100 + "vw";
+    SCROLL DOWN ↓
 
-    sparkle.style.top =
-      Math.random() * 100 + "vh";
+  </div>
 
-    sparkle.style.fontSize =
-      (10 + Math.random() * 15) + "px";
+</section>
 
-    document.body.appendChild(sparkle);
 
-    setTimeout(() => {
 
-      sparkle.remove();
+<!-- ==================================================
+     02
+     素敵な推しと出会えた日
+================================================== -->
 
-    }, 1500);
+<section>
 
-  }
+  <div class="inner">
 
-}
+    <div class="english">
+      OUR STORY
+    </div>
 
-</script>
+
+    <div class="story-card">
+
+      <div class="story-title">
+
+        素敵な推しと出会えた日。
+
+      </div>
+
+
+      <div class="story-text">
+
+        あの日から、<br>
+
+        少しずつ増えていった時間。
+
+        <br><br>
+
+        笑ったり、話したり、<br>
+
+        くだらないことで盛り上がったり。
+
+        <br><br>
+
+        気がつけば、<br>
+
+        大切にしたいと思える時間が<br>
+
+        たくさん増えていました。
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     03
+     好きなところ
+================================================== -->
+
+<section>
+
+  <div class="inner">
+
+    <div class="english">
+      THINGS I LOVE ABOUT YOU
+    </div>
+
+
+    <h2
+      style="
+        font-size:32px;
+        font-weight:300;
+        letter-spacing:.15em;
+        margin:25px 0 10px;
+      "
+    >
+
+      好きなところ。
+
+    </h2>
+
+
+    <div class="star-line"></div>
+
+
+    <div class="favorite">
+
+
+      <!-- GAME -->
+
+      <div class="favorite-item">
+
+        <div class="favorite-icon">
+          🎮
+        </div>
+
+        <h3>
+          ゲームしてるところ
+        </h3>
+
+        <p>
+          だって、かっこいいから！！！
+        </p>
+
+      </div>
+
+
+      <!-- CUTE -->
+
+      <div class="favorite-item">
+
+        <div class="favorite-icon">
+          🎮
+        </div>
+
+        <h3>
+          はしゃいでるところ
+        </h3>
+
+        <p>
+          誰かとゲームしてるとき、<br>
+          はしゃいで可愛くなるところ。
+        </p>
+
+      </div>
+
+
+      <!-- SERIOUS -->
+
+      <div class="favorite-item">
+
+        <div class="favorite-icon">
+          ⚡
+        </div>
+
+        <h3>
+          ガチになるところ
+        </h3>
+
+        <p>
+          ケタケタ笑ってると思ったら、<br>
+          時にはガチになるところ。
+        </p>
+
+      </div>
+
+
+      <!-- VOICE -->
+
+      <div class="favorite-item">
+
+        <div class="favorite-icon">
+          🎙️
+        </div>
+
+        <h3>
+          そらくんの声
+        </h3>
+
+        <p>
+          もともと大好きだった、<br>
+          そらくんの声。
+        </p>
+
+      </div>
+
+
+      <!-- SING -->
+
+      <div class="favorite-item">
+
+        <div class="favorite-icon">
+          🎤
+        </div>
+
+        <h3>
+          歌うと変わる声
+        </h3>
+
+        <p>
+          歌うとガラリと変わる<br>
+          歌声。
+        </p>
+
+      </div>
+
+
+      <!-- LAUGH -->
+
+      <div class="favorite-item">
+
+        <div class="favorite-icon">
+          😂
+        </div>
+
+        <h3>
+          笑ってる姿
+        </h3>
+
+        <p>
+          ケタケタ笑ってる姿が<br>
+          すっごく好き。
+        </p>
+
+      </div>
+
+
+      <!-- LISTENERS -->
+
+      <div class="favorite-item">
+
+        <div class="favorite-icon">
+          🩵
+        </div>
+
+        <h3>
+          リスナー想いなところ
+        </h3>
+
+        <p>
+          ちゃんと大切にしてくれる、<br>
+          優しいところ。
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     04
+     まとめ
+================================================== -->
+
+<section>
+
+  <div class="inner">
+
+    <div class="english">
+      AND THAT'S WHY
+    </div>
+
+
+    <h2
+      style="
+        font-size:
+          clamp(26px,6vw,42px);
+        font-weight:300;
+        letter-spacing:.12em;
+        line-height:1.8;
+      "
+    >
+
+      そういうところが、<br>
+      すっごくだいすきなの！！！
+
+    </h2>
+
+
+    <div class="constellation">
+
+      <span class="star"></span>
+
+      <span class="star"></span>
+
+      <span class="star"></span>
+
+      <span class="star"></span>
+
+      <span class="star"></span>
+
+    </div>
+
+
+    <p
+      style="
+        font-size:13px;
+        line-height:2.5;
+        opacity:.65;
+        letter-spacing:.08em;
+      "
+    >
+
+      ひとつひとつの「好き」が<br>
+      星みたいに増えていって。
+
+      <br><br>
+
+      気がつけば、<br>
+      こんなにもたくさんになっていました。
+
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     05
+     LAST
+================================================== -->
+
+<section id="ending">
+
+
+  <!-- 光 -->
+
+  <div class="final-light"></div>
+
+
+  <!-- 最後の流れ星 -->
+
+  <div class="final-shooting"></div>
+
+
+  <div class="inner ending-content">
+
+
+    <div class="last-word">
+
+      AND ONE LAST THING
+
+    </div>
+
+
+    <!-- 第一段階 -->
+
+    <div class="love-text">
+
+      推しがだいすきなあたし
+
+    </div>
+
+
+    <!-- 第二段階 -->
+
+    <div class="final-love">
+
+      一番はいっぱい食べる君が好き。
+
+    </div>
+
+
+    <!-- 最後 -->
+
+    <div class="forever">
+
+      これからも、ずっと。
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
 
 </body>
 </html>
+```
