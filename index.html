@@ -1,1586 +1,311 @@
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>2025.11.28~ 🦈🌌</title>
-
+<title>推しへの想い — 2025.11.28</title>
+<meta name="description" content="2025.11.28から始まった、そらくんを好きになった記録。">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
 
-/* =====================================================
-   BASIC
-===================================================== */
-
-* {
-  box-sizing: border-box;
+:root{
+  --bg:#030719;
+  --text:#f7f5ff;
+  --muted:#b9c2df;
+  --blue:#79c9ff;
+  --pink:#ff9de1;
+  --purple:#b79cff;
 }
-
-html {
-  scroll-behavior: smooth;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);background:var(--bg);
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  overflow-x:hidden;
 }
-
-body {
-  margin: 0;
-  background: #01030c;
-  color: #fff;
-
-  font-family:
-    "Noto Sans JP",
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    sans-serif;
-
-  overflow-x: hidden;
+body:before,body:after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-3;
 }
-
-
-/* =====================================================
-   SPACE BACKGROUND
-===================================================== */
-
-.space {
-  position: fixed;
-  inset: 0;
-  z-index: -20;
-  overflow: hidden;
-
+body:before{
   background:
-    radial-gradient(
-      circle at 50% 25%,
-      rgba(65,145,255,.20),
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(80,110,255,.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 65%,
-      rgba(80,190,255,.10),
-      transparent 35%
-    ),
-    linear-gradient(
-      180deg,
-      #01030c 0%,
-      #02091b 50%,
-      #01030c 100%
-    );
-
-  transition:
-    background 3s ease;
+    radial-gradient(circle at 18% 20%,rgba(76,119,255,.20),transparent 24%),
+    radial-gradient(circle at 82% 34%,rgba(185,93,255,.16),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(255,91,190,.12),transparent 30%),
+    linear-gradient(180deg,#020617 0%,#06102d 52%,#09051c 100%);
 }
-
-
-/* =====================================================
-   STARS
-===================================================== */
-
-.stars,
-.stars::before,
-.stars::after {
-
-  position: absolute;
-  inset: -20%;
-
-  content: "";
-
+body:after{
+  opacity:.7;
   background-image:
+    radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(126,202,255,.75) 0 1px,transparent 1.5px);
+  background-size:97px 113px,151px 173px;
+  background-position:12px 20px,55px 70px;
+  animation:starDrift 28s linear infinite;
+}
+@keyframes starDrift{to{background-position:110px 150px,-100px -80px}}
 
-    radial-gradient(
-      circle,
-      rgba(255,255,255,.95) 1px,
-      transparent 1.6px
-    ),
+canvas{position:fixed;inset:0;z-index:-2;pointer-events:none}
+a{color:inherit;text-decoration:none}
 
-    radial-gradient(
-      circle,
-      rgba(180,225,255,.85) 1px,
-      transparent 1.6px
-    ),
+.nav{
+  position:sticky;top:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 6vw;border-bottom:1px solid rgba(255,255,255,.10);
+  background:rgba(2,6,23,.58);backdrop-filter:blur(14px);
+}
+.logo{font-family:"Noto Serif JP",serif;letter-spacing:.12em;font-weight:700}
+.logo span{color:var(--blue);text-shadow:0 0 16px rgba(121,201,255,.8)}
+.navlinks{display:flex;gap:24px;font-size:12px;color:#cfd6ec}
+.navlinks a:hover{color:white;text-shadow:0 0 12px var(--blue)}
 
-    radial-gradient(
-      circle,
-      rgba(255,255,255,.55) .8px,
-      transparent 1.4px
-    );
+.hero{
+  min-height:86vh;display:grid;place-items:center;text-align:center;
+  padding:100px 20px 80px;position:relative;
+}
+.hero .eyebrow{font-size:12px;letter-spacing:.38em;color:var(--blue)}
+.hero h1{
+  margin:22px 0 12px;font-family:"Noto Serif JP",serif;
+  font-size:clamp(38px,8vw,82px);letter-spacing:.08em;
+  text-shadow:0 0 24px rgba(121,201,255,.4);
+}
+.hero p{margin:0;color:var(--muted);letter-spacing:.14em;font-size:13px}
+.scroll{margin-top:60px;font-size:11px;letter-spacing:.28em;color:#98a6c8}
+.scroll:after{content:"";display:block;width:1px;height:58px;margin:12px auto 0;background:linear-gradient(var(--blue),transparent)}
 
-  background-size:
-    145px 145px,
-    220px 220px,
-    310px 310px;
+.container{width:min(1040px,90%);margin:auto}
+.card{
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(135deg,rgba(10,21,53,.78),rgba(8,9,30,.64));
+  border-radius:28px;padding:clamp(26px,5vw,58px);
+  box-shadow:0 20px 80px rgba(0,0,0,.35),inset 0 0 60px rgba(109,137,255,.04);
+}
+.date{
+  color:var(--blue);font-size:13px;letter-spacing:.25em;
+  display:flex;align-items:center;gap:12px;
+}
+.date:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(121,201,255,.5),transparent)}
+h2{
+  font-family:"Noto Serif JP",serif;font-size:clamp(27px,5vw,44px);
+  margin:16px 0 36px;letter-spacing:.06em;
+}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:42px}
+.story p{line-height:2.35;margin:0 0 22px;color:#e7e9f4}
+.highlight{color:#9fdbff;font-weight:700;text-shadow:0 0 12px rgba(121,201,255,.5)}
+.pink{color:#ffb0e9;font-weight:700;text-shadow:0 0 12px rgba(255,157,225,.45)}
 
-  background-position:
-    0 0,
-    80px 100px,
-    150px 50px;
-
-  animation:
-    starsMove 55s linear infinite;
-
-  opacity: .62;
+.favorites{
+  margin:80px auto;width:min(860px,90%);text-align:center;
+}
+.favorites h2{margin-bottom:28px}
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.tag{
+  padding:10px 17px;border:1px solid rgba(121,201,255,.25);
+  border-radius:999px;color:#cfe9ff;background:rgba(121,201,255,.05);
 }
 
+.final{
+  min-height:85vh;display:grid;place-items:center;text-align:center;
+  padding:100px 20px;position:relative;
+}
+.final:before{
+  content:"";position:absolute;width:min(650px,80vw);height:300px;
+  background:radial-gradient(ellipse,rgba(180,100,255,.20),transparent 65%);
+  filter:blur(20px);animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{50%{transform:scale(1.12);opacity:.7}}
+.final-inner{position:relative}
+.final-small{font-size:13px;letter-spacing:.25em;color:#abb8d9;margin-bottom:28px}
+.final-title{
+  font-family:"Noto Serif JP",serif;
+  font-size:clamp(34px,8vw,78px);font-weight:700;
+  line-height:1.45;margin:0;
+  background:linear-gradient(90deg,#fff,#9edcff,#ffb0e9,#fff);
+  background-size:250% auto;color:transparent;background-clip:text;-webkit-background-clip:text;
+  animation:shine 4s linear infinite,glow 2.6s ease-in-out infinite;
+  filter:drop-shadow(0 0 18px rgba(189,143,255,.55));
+}
+@keyframes shine{to{background-position:250% center}}
+@keyframes glow{50%{filter:drop-shadow(0 0 34px rgba(255,157,225,.85))}}
+.final-line{
+  width:min(560px,80%);height:1px;margin:30px auto;
+  background:linear-gradient(90deg,transparent,#8fd5ff,#ff9de1,transparent);
+  box-shadow:0 0 16px rgba(255,157,225,.55);
+}
+.final-note{color:#d8dcef;line-height:2.1;font-family:"Noto Serif JP",serif}
+.heart{
+  display:inline-block;margin-top:28px;font-size:30px;
+  animation:heart 1.7s ease-in-out infinite;
+  text-shadow:0 0 18px #ff9de1;
+}
+@keyframes heart{50%{transform:scale(1.2)}}
 
-.stars::before {
-  transform: scale(1.3);
-  animation-duration: 80s;
-  opacity: .30;
+footer{text-align:center;padding:30px;color:#6e7895;font-size:11px;letter-spacing:.15em}
+
+.shooting{
+  position:fixed;width:130px;height:1px;z-index:-1;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);
+  transform:rotate(-28deg);filter:drop-shadow(0 0 5px #9fdcff);
+  animation:shoot 7s linear infinite;pointer-events:none;
+}
+.shooting:nth-child(1){top:16%;left:-160px;animation-delay:1s}
+.shooting:nth-child(2){top:39%;left:-160px;animation-delay:4s;width:90px}
+.shooting:nth-child(3){top:67%;left:-160px;animation-delay:8s;width:150px}
+@keyframes shoot{
+  0%{transform:translate(0,0) rotate(-28deg);opacity:0}
+  7%{opacity:1} 24%{transform:translate(115vw,42vh) rotate(-28deg);opacity:0}
+  100%{opacity:0}
 }
 
-
-.stars::after {
-  transform: scale(1.7);
-  animation-duration: 120s;
-  opacity: .20;
+@media(max-width:720px){
+  .nav{padding:14px 5vw}.navlinks{gap:12px}
+  .navlinks a:nth-child(n+3){display:none}
+  .hero{min-height:76vh;padding-top:80px}
+  .story{grid-template-columns:1fr;gap:0}
+  .card{border-radius:22px}
 }
-
-
-@keyframes starsMove {
-
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(180px);
-  }
-
-}
-
-
-/* =====================================================
-   SHOOTING STARS
-===================================================== */
-
-.shooting-star {
-
-  position: fixed;
-
-  width: 150px;
-  height: 2px;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(160,220,255,.45),
-      #fff
-    );
-
-  transform: rotate(-30deg);
-
-  filter:
-    drop-shadow(
-      0 0 7px
-      rgba(180,230,255,.9)
-    );
-
-  opacity: 0;
-
-  z-index: -5;
-}
-
-
-.shooting-star:nth-child(2) {
-
-  top: 15%;
-  left: 90%;
-
-  animation:
-    shooting 8s linear infinite;
-
-}
-
-
-.shooting-star:nth-child(3) {
-
-  top: 38%;
-  left: 25%;
-
-  animation:
-    shooting 12s 4s linear infinite;
-
-}
-
-
-.shooting-star:nth-child(4) {
-
-  top: 65%;
-  left: 85%;
-
-  animation:
-    shooting 14s 8s linear infinite;
-
-}
-
-
-@keyframes shooting {
-
-  0% {
-
-    opacity: 0;
-
-    transform:
-      translate(0,0)
-      rotate(-30deg);
-
-  }
-
-  82% {
-
-    opacity: 0;
-
-  }
-
-  86% {
-
-    opacity: 1;
-
-  }
-
-  100% {
-
-    opacity: 0;
-
-    transform:
-      translate(-380px,380px)
-      rotate(-30deg);
-
-  }
-
-}
-
-
-/* =====================================================
-   COMMON
-===================================================== */
-
-section {
-
-  min-height: 100vh;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  padding:
-    80px 20px;
-
-  position: relative;
-
-}
-
-
-.inner {
-
-  width:
-    min(850px, 100%);
-
-  text-align: center;
-
-}
-
-
-.english {
-
-  font-size: 10px;
-
-  letter-spacing: .45em;
-
-  opacity: .45;
-
-}
-
-
-.glow {
-
-  text-shadow:
-
-    0 0 12px
-    rgba(160,225,255,.85),
-
-    0 0 35px
-    rgba(80,160,255,.55),
-
-    0 0 70px
-    rgba(80,160,255,.25);
-
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-#hero {
-
-  min-height: 100vh;
-
-}
-
-
-.shark {
-
-  font-size: 38px;
-
-  margin-bottom: 22px;
-
-  filter:
-    drop-shadow(
-      0 0 12px
-      rgba(150,220,255,.7)
-    );
-
-  animation:
-    sharkFloat 4s ease-in-out infinite;
-
-}
-
-
-@keyframes sharkFloat {
-
-  0%,100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-9px);
-  }
-
-}
-
-
-.date {
-
-  font-size:
-    clamp(30px, 8vw, 65px);
-
-  font-weight: 300;
-
-  letter-spacing: .08em;
-
-  text-shadow:
-
-    0 0 12px
-    rgba(160,225,255,.9),
-
-    0 0 40px
-    rgba(80,160,255,.6),
-
-    0 0 80px
-    rgba(80,160,255,.3);
-
-  animation:
-    datePulse 3s ease-in-out infinite alternate;
-
-}
-
-
-@keyframes datePulse {
-
-  from {
-    opacity: .72;
-  }
-
-  to {
-    opacity: 1;
-  }
-
-}
-
-
-.subtitle {
-
-  margin-top: 25px;
-
-  font-size: 13px;
-
-  letter-spacing: .25em;
-
-  opacity: .6;
-
-}
-
-
-.scroll {
-
-  position: absolute;
-
-  bottom: 28px;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
-
-  font-size: 9px;
-
-  letter-spacing: .4em;
-
-  opacity: .4;
-
-}
-
-
-/* =====================================================
-   STORY
-===================================================== */
-
-.story-card {
-
-  padding:
-    48px 28px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.11);
-
-  border-radius: 30px;
-
-  background:
-    rgba(255,255,255,.035);
-
-  backdrop-filter:
-    blur(10px);
-
-  box-shadow:
-
-    0 0 50px
-    rgba(50,120,220,.08),
-
-    inset 0 0 30px
-    rgba(255,255,255,.015);
-
-}
-
-
-.story-title {
-
-  font-size:
-    clamp(25px, 6vw, 40px);
-
-  font-weight: 300;
-
-  letter-spacing: .15em;
-
-  margin-bottom: 35px;
-
-}
-
-
-.story-text {
-
-  font-size: 14px;
-
-  line-height: 2.5;
-
-  letter-spacing: .06em;
-
-  color:
-    rgba(255,255,255,.82);
-
-}
-
-
-/* =====================================================
-   STAR LINE
-===================================================== */
-
-.star-line {
-
-  width: 190px;
-
-  height: 1px;
-
-  margin:
-    45px auto;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(180,230,255,.8),
-      transparent
-    );
-
-  box-shadow:
-    0 0 10px
-    rgba(150,220,255,.6);
-
-}
-
-
-/* =====================================================
-   FAVORITE POINTS
-===================================================== */
-
-.favorite {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(230px, 1fr)
-    );
-
-  gap: 18px;
-
-  margin-top: 45px;
-
-}
-
-
-.favorite-item {
-
-  padding:
-    30px 20px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.09);
-
-  border-radius: 24px;
-
-  background:
-    rgba(255,255,255,.025);
-
-  transition:
-    transform .4s ease,
-    background .4s ease,
-    box-shadow .4s ease;
-
-}
-
-
-.favorite-item:hover {
-
-  transform:
-    translateY(-6px);
-
-  background:
-    rgba(130,200,255,.06);
-
-  box-shadow:
-    0 0 30px
-    rgba(100,180,255,.10);
-
-}
-
-
-.favorite-icon {
-
-  font-size: 25px;
-
-  margin-bottom: 15px;
-
-}
-
-
-.favorite-item h3 {
-
-  margin:
-    0 0 12px;
-
-  font-size: 17px;
-
-  font-weight: 400;
-
-  letter-spacing: .08em;
-
-}
-
-
-.favorite-item p {
-
-  margin: 0;
-
-  font-size: 13px;
-
-  line-height: 2;
-
-  opacity: .7;
-
-}
-
-
-/* =====================================================
-   CONSTELLATION
-===================================================== */
-
-.constellation {
-
-  position: relative;
-
-  width:
-    min(550px, 90%);
-
-  height: 180px;
-
-  margin:
-    45px auto;
-
-}
-
-
-.constellation .star {
-
-  position: absolute;
-
-  width: 5px;
-  height: 5px;
-
-  background: #fff;
-
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 12px
-    rgba(190,235,255,1);
-
-  animation:
-    twinkle 2.5s
-    ease-in-out
-    infinite
-    alternate;
-
-}
-
-
-.constellation .star:nth-child(1) {
-  left: 8%;
-  top: 60%;
-}
-
-.constellation .star:nth-child(2) {
-  left: 28%;
-  top: 25%;
-}
-
-.constellation .star:nth-child(3) {
-  left: 48%;
-  top: 58%;
-}
-
-.constellation .star:nth-child(4) {
-  left: 68%;
-  top: 20%;
-}
-
-.constellation .star:nth-child(5) {
-  left: 91%;
-  top: 60%;
-}
-
-
-@keyframes twinkle {
-
-  from {
-    opacity: .3;
-    transform: scale(.7);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1.5);
-  }
-
-}
-
-
-/* =====================================================
-   ENDING
-===================================================== */
-
-#ending {
-
-  min-height: 140vh;
-
-  overflow: hidden;
-
-  transition:
-    background 3s ease;
-
-}
-
-
-.ending-content {
-
-  position: relative;
-
-  z-index: 10;
-
-}
-
-
-.last-word {
-
-  font-size: 10px;
-
-  letter-spacing: .5em;
-
-  opacity: .4;
-
-  margin-bottom: 55px;
-
-}
-
-
-/* =====================================================
-   「推しがだいすきなあたし」
-===================================================== */
-
-.love-text {
-
-  font-size:
-    clamp(
-      23px,
-      6vw,
-      48px
-    );
-
-  line-height: 1.8;
-
-  letter-spacing: .12em;
-
-  font-weight: 300;
-
-  opacity: 0;
-
-  transform:
-    translateY(25px);
-
-  animation:
-    loveAppear 3s
-    .8s
-    forwards;
-
-}
-
-
-@keyframes loveAppear {
-
-  0% {
-
-    opacity: 0;
-
-    transform:
-      translateY(25px);
-
-    filter:
-      blur(12px);
-
-  }
-
-  60% {
-
-    opacity: .8;
-
-    filter:
-      blur(2px);
-
-  }
-
-  100% {
-
-    opacity: 1;
-
-    transform:
-      translateY(0);
-
-    filter:
-      blur(0);
-
-  }
-
-}
-
-
-/* =====================================================
-   最後の言葉
-===================================================== */
-
-.final-love {
-
-  margin-top: 55px;
-
-  font-size:
-    clamp(
-      25px,
-      7vw,
-      60px
-    );
-
-  line-height: 1.9;
-
-  letter-spacing: .08em;
-
-  font-weight: 300;
-
-  opacity: 0;
-
-  transform:
-    scale(.72);
-
-  filter:
-    blur(15px);
-
-  animation:
-    finalAppear 5s
-    3.5s
-    forwards;
-
-}
-
-
-@keyframes finalAppear {
-
-  0% {
-
-    opacity: 0;
-
-    transform:
-      scale(.72);
-
-    filter:
-      blur(15px);
-
-    text-shadow:
-      0 0 0
-      rgba(180,230,255,0);
-
-  }
-
-  35% {
-
-    opacity: .55;
-
-    transform:
-      scale(1.07);
-
-    filter:
-      blur(4px);
-
-  }
-
-  65% {
-
-    opacity: 1;
-
-    transform:
-      scale(1);
-
-    filter:
-      blur(0);
-
-    text-shadow:
-
-      0 0 12px
-      rgba(190,235,255,.9),
-
-      0 0 40px
-      rgba(100,180,255,.7),
-
-      0 0 90px
-      rgba(90,160,255,.4);
-
-  }
-
-  100% {
-
-    opacity: 1;
-
-    transform:
-      scale(1);
-
-    filter:
-      blur(0);
-
-    text-shadow:
-
-      0 0 14px
-      rgba(190,235,255,1),
-
-      0 0 45px
-      rgba(100,180,255,.75),
-
-      0 0 100px
-      rgba(90,160,255,.45);
-
-  }
-
-}
-
-
-/* =====================================================
-   FINAL LIGHT BURST
-===================================================== */
-
-.final-light {
-
-  position: absolute;
-
-  left: 50%;
-  top: 52%;
-
-  width: 12px;
-  height: 12px;
-
-  border-radius: 50%;
-
-  background: #fff;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.2);
-
-  opacity: 0;
-
-  box-shadow:
-
-    0 0 20px 10px
-    rgba(190,235,255,.8),
-
-    0 0 90px 40px
-    rgba(90,170,255,.35);
-
-  animation:
-    finalBurst 7s
-    4.5s
-    forwards;
-
-}
-
-
-@keyframes finalBurst {
-
-  0% {
-
-    opacity: 0;
-
-    transform:
-      translate(-50%,-50%)
-      scale(.2);
-
-  }
-
-  18% {
-
-    opacity: .85;
-
-  }
-
-  100% {
-
-    opacity: 0;
-
-    transform:
-      translate(-50%,-50%)
-      scale(42);
-
-  }
-
-}
-
-
-/* =====================================================
-   EXTRA FINAL SHOOTING STAR
-===================================================== */
-
-.final-shooting {
-
-  position: absolute;
-
-  width: 230px;
-  height: 2px;
-
-  top: 47%;
-  left: 100%;
-
-  opacity: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(180,230,255,.7),
-      white
-    );
-
-  transform:
-    rotate(-25deg);
-
-  filter:
-    drop-shadow(
-      0 0 8px
-      rgba(180,230,255,.9)
-    );
-
-  animation:
-    finalShooting 3s
-    5.3s
-    forwards;
-
-}
-
-
-@keyframes finalShooting {
-
-  0% {
-
-    opacity: 0;
-
-    left: 100%;
-
-  }
-
-  15% {
-
-    opacity: 1;
-
-  }
-
-  100% {
-
-    opacity: 0;
-
-    left: -30%;
-
-  }
-
-}
-
-
-/* =====================================================
-   FOREVER
-===================================================== */
-
-.forever {
-
-  margin-top: 85px;
-
-  font-size: 11px;
-
-  letter-spacing: .35em;
-
-  opacity: 0;
-
-  animation:
-    foreverAppear 3s
-    7s
-    forwards;
-
-}
-
-
-@keyframes foreverAppear {
-
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: .45;
-  }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 600px) {
-
-  section {
-
-    padding:
-      60px 18px;
-
-  }
-
-
-  .story-card {
-
-    padding:
-      38px 20px;
-
-  }
-
-
-  .story-text {
-
-    font-size: 13px;
-
-    line-height: 2.35;
-
-  }
-
-
-  .favorite {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-
-  .final-love {
-
-    letter-spacing:
-      .04em;
-
-  }
-
-}
-
 </style>
 </head>
-
-
-
 <body>
+<canvas id="stars"></canvas>
+<div class="shooting"></div><div class="shooting"></div><div class="shooting"></div>
 
+<header class="nav">
+  <div class="logo"><span>SORA.</span> MEMORY</div>
+  <nav class="navlinks">
+    <a href="#story">Story</a>
+    <a href="#favorites">好きなところ</a>
+    <a href="#message">Message</a>
+  </nav>
+</header>
 
-<!-- ==================================================
-     BACKGROUND
-================================================== -->
-
-<div class="space">
-
-  <div class="stars"></div>
-
-  <div class="shooting-star"></div>
-
-  <div class="shooting-star"></div>
-
-  <div class="shooting-star"></div>
-
-</div>
-
-
-
-<!-- ==================================================
-     01
-     2025.11.28
-================================================== -->
-
-<section id="hero">
-
-  <div class="inner">
-
-    <div class="shark">
-      🦈
-    </div>
-
-
-    <div class="english">
-      THE DAY EVERYTHING STARTED
-    </div>
-
-
-    <div class="date">
-
-      2025.11.28~
-
-    </div>
-
-
-    <div class="subtitle">
-
-      🦈 🌌
-
-    </div>
-
+<section class="hero">
+  <div>
+    <div class="eyebrow">A MEMORY THAT STARTED WITH ONE VOICE</div>
+    <h1>2025.11.28</h1>
+    <p>何気ない出会いだった。</p>
+    <div class="scroll">SCROLL</div>
   </div>
-
-
-  <div class="scroll">
-
-    SCROLL DOWN ↓
-
-  </div>
-
 </section>
 
+<main>
+<section id="story" class="container">
+  <article class="card">
+    <div class="date">2025.11.28</div>
+    <h2>はじまりの日</h2>
+    <div class="story">
+      <div>
+        <p>何気ない出会いだった。</p>
+        <p>2025年11月28日。<br>たまたま見つけたその人の声を聴いた。</p>
+        <p><span class="highlight">その瞬間、もう好きだった。</span></p>
+        <p>うっとりするような声。<br>今でも、初めて聴いた時のことを覚えている。</p>
 
+        <p>その時、たまたまあたしの好きなゲームをしていた。<br>
+        しかも、すごく上手かった。</p>
 
-<!-- ==================================================
-     02
-     素敵な推しと出会えた日
-================================================== -->
+        <p><span class="highlight">好きなゲームを楽しそうにする姿。<br>
+        それだけでも惹かれたのに、仕上がりはいつだって高クオリティ。</span></p>
 
-<section>
+        <p>「声も好き。ゲームも上手い。」</p>
+        <p>こんな人を推せるチャンス、もう二度とないかもしれない。<br>そんなことを思ったのが、はじまりだった。</p>
 
-  <div class="inner">
+        <p>人と一緒にゲームをしている時は、すっごく可愛くなる。<br>
+        ケタケタ笑う。</p>
 
-    <div class="english">
-      OUR STORY
-    </div>
+        <p>その笑い声を聴いているだけで、こっちまで楽しくなる。</p>
 
+        <p>でも、ガチになった瞬間は別人みたいに変わる。<br>
+        その切り替わりが、たまらなく好き。</p>
 
-    <div class="story-card">
-
-      <div class="story-title">
-
-        素敵な推しと出会えた日。
-
+        <p><span class="pink">ガチムーブは、本当にかっこいい。<br>めろい。</span></p>
       </div>
 
+      <div>
+        <p>そして、歌。</p>
+        <p>推しの歌を初めて聴いた時は、本当に衝撃だった。</p>
+        <p>上手い。<br>もちろん、それだけじゃない。</p>
 
-      <div class="story-text">
+        <p><span class="pink">推しにしか出せない色がある。</span></p>
+        <p>歌い方も、アレンジも、全部ひっくるめて<br>
+        「この人だから好き」って思える何かがあった。</p>
 
-        あの日から、<br>
+        <p>歌を聴いて、初めて「お！」ってなった。</p>
+        <p>特に、推しのミセス。<br><span class="pink">本当にかっこよくて、大好き。</span></p>
 
-        少しずつ増えていった時間。
+        <p>楽しい話をしている時も好き。<br>
+        推しが嬉しい時は、あたしも嬉しい。<br>
+        笑っている時は、あたしも嬉しい。</p>
 
-        <br><br>
+        <p>でも、ずっと楽しいことばかりだったわけじゃない。</p>
+        <p>泣いた時もあった。<br>しんどい時もあった。<br>苦しいなって思った時もあった。</p>
 
-        笑ったり、話したり、<br>
+        <p>何度も、自分が原因で降りようとした。<br>
+        離れた方がいいんじゃないかって思った。</p>
 
-        くだらないことで盛り上がったり。
+        <p><span class="highlight">それでも。<br>そんな自分でも、受け入れてくれた。</span></p>
 
-        <br><br>
-
-        気がつけば、<br>
-
-        大切にしたいと思える時間が<br>
-
-        たくさん増えていました。
-
+        <p>だから思った。</p>
+        <p><span class="pink">こんな推し、どこを探してもいない。</span></p>
+        <p>あたしの中の、<br><strong>最初で最後の最高の推し。</strong></p>
       </div>
-
     </div>
-
-  </div>
-
+  </article>
 </section>
 
-
-
-<!-- ==================================================
-     03
-     好きなところ
-================================================== -->
-
-<section>
-
-  <div class="inner">
-
-    <div class="english">
-      THINGS I LOVE ABOUT YOU
-    </div>
-
-
-    <h2
-      style="
-        font-size:32px;
-        font-weight:300;
-        letter-spacing:.15em;
-        margin:25px 0 10px;
-      "
-    >
-
-      好きなところ。
-
-    </h2>
-
-
-    <div class="star-line"></div>
-
-
-    <div class="favorite">
-
-
-      <!-- GAME -->
-
-      <div class="favorite-item">
-
-        <div class="favorite-icon">
-          🎮
-        </div>
-
-        <h3>
-          ゲームしてるところ
-        </h3>
-
-        <p>
-          だって、かっこいいから！！！
-        </p>
-
-      </div>
-
-
-      <!-- CUTE -->
-
-      <div class="favorite-item">
-
-        <div class="favorite-icon">
-          🎮
-        </div>
-
-        <h3>
-          はしゃいでるところ
-        </h3>
-
-        <p>
-          誰かとゲームしてるとき、<br>
-          はしゃいで可愛くなるところ。
-        </p>
-
-      </div>
-
-
-      <!-- SERIOUS -->
-
-      <div class="favorite-item">
-
-        <div class="favorite-icon">
-          ⚡
-        </div>
-
-        <h3>
-          ガチになるところ
-        </h3>
-
-        <p>
-          ケタケタ笑ってると思ったら、<br>
-          時にはガチになるところ。
-        </p>
-
-      </div>
-
-
-      <!-- VOICE -->
-
-      <div class="favorite-item">
-
-        <div class="favorite-icon">
-          🎙️
-        </div>
-
-        <h3>
-          そらくんの声
-        </h3>
-
-        <p>
-          もともと大好きだった、<br>
-          そらくんの声。
-        </p>
-
-      </div>
-
-
-      <!-- SING -->
-
-      <div class="favorite-item">
-
-        <div class="favorite-icon">
-          🎤
-        </div>
-
-        <h3>
-          歌うと変わる声
-        </h3>
-
-        <p>
-          歌うとガラリと変わる<br>
-          歌声。
-        </p>
-
-      </div>
-
-
-      <!-- LAUGH -->
-
-      <div class="favorite-item">
-
-        <div class="favorite-icon">
-          😂
-        </div>
-
-        <h3>
-          笑ってる姿
-        </h3>
-
-        <p>
-          ケタケタ笑ってる姿が<br>
-          すっごく好き。
-        </p>
-
-      </div>
-
-
-      <!-- LISTENERS -->
-
-      <div class="favorite-item">
-
-        <div class="favorite-icon">
-          🩵
-        </div>
-
-        <h3>
-          リスナー想いなところ
-        </h3>
-
-        <p>
-          ちゃんと大切にしてくれる、<br>
-          優しいところ。
-        </p>
-
-      </div>
-
-
-    </div>
-
+<section id="favorites" class="favorites">
+  <h2>たくさんの「好き」</h2>
+  <div class="tags">
+    <span class="tag">声が好き</span>
+    <span class="tag">ゲームをしている姿が好き</span>
+    <span class="tag">ケタケタ笑うところが好き</span>
+    <span class="tag">ガチになった時のかっこよさが好き</span>
+    <span class="tag">歌が好き</span>
+    <span class="tag">ミセスを歌う推しが好き</span>
+    <span class="tag">嬉しそうな推しが好き</span>
+    <span class="tag">いっぱい食べる推しが好き</span>
   </div>
-
 </section>
 
-
-
-<!-- ==================================================
-     04
-     まとめ
-================================================== -->
-
-<section>
-
-  <div class="inner">
-
-    <div class="english">
-      AND THAT'S WHY
-    </div>
-
-
-    <h2
-      style="
-        font-size:
-          clamp(26px,6vw,42px);
-        font-weight:300;
-        letter-spacing:.12em;
-        line-height:1.8;
-      "
-    >
-
-      そういうところが、<br>
-      すっごくだいすきなの！！！
-
-    </h2>
-
-
-    <div class="constellation">
-
-      <span class="star"></span>
-
-      <span class="star"></span>
-
-      <span class="star"></span>
-
-      <span class="star"></span>
-
-      <span class="star"></span>
-
-    </div>
-
-
-    <p
-      style="
-        font-size:13px;
-        line-height:2.5;
-        opacity:.65;
-        letter-spacing:.08em;
-      "
-    >
-
-      ひとつひとつの「好き」が<br>
-      星みたいに増えていって。
-
-      <br><br>
-
-      気がつけば、<br>
-      こんなにもたくさんになっていました。
-
+<section id="message" class="final">
+  <div class="final-inner">
+    <div class="final-small">AND, ABOVE ALL...</div>
+    <h2 class="final-title">推しがだいすきなあたし。</h2>
+    <div class="final-line"></div>
+    <p class="final-note">
+      そんな推しを、<br>
+      あたしはずっと好きでいたい。<br><br>
+      2025.11.28<br>
+      何気ない出会いだった。<br>
+      でも、あの日出会えたことが、<br>
+      今のあたしにとって、何より大切な「はじまりの日」。
     </p>
-
+    <div class="heart">♡</div>
   </div>
-
 </section>
+</main>
 
+<footer>2025.11.28 — SORA. MEMORY</footer>
 
-
-<!-- ==================================================
-     05
-     LAST
-================================================== -->
-
-<section id="ending">
-
-
-  <!-- 光 -->
-
-  <div class="final-light"></div>
-
-
-  <!-- 最後の流れ星 -->
-
-  <div class="final-shooting"></div>
-
-
-  <div class="inner ending-content">
-
-
-    <div class="last-word">
-
-      AND ONE LAST THING
-
-    </div>
-
-
-    <!-- 第一段階 -->
-
-    <div class="love-text">
-
-      推しがだいすきなあたし
-
-    </div>
-
-
-    <!-- 第二段階 -->
-
-    <div class="final-love">
-
-      一番はいっぱい食べる君が好き。
-
-    </div>
-
-
-    <!-- 最後 -->
-
-    <div class="forever">
-
-      これからも、ずっと。
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-
+<script>
+const canvas=document.getElementById("stars"),ctx=canvas.getContext("2d");
+let w,h,stars=[];
+function resize(){
+  w=canvas.width=innerWidth; h=canvas.height=innerHeight;
+  stars=Array.from({length:Math.min(180,Math.floor(w*h/9000))},()=>({
+    x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+.2,
+    a:Math.random(),s:Math.random()*.008+.002
+  }));
+}
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  stars.forEach(st=>{
+    st.a+=st.s;
+    const alpha=.25+.45*(Math.sin(st.a*6)+1)/2;
+    ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(220,235,255,${alpha})`;ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+addEventListener("resize",resize);resize();draw();
+</script>
 </body>
 </html>
-```
