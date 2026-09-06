@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -90,7 +91,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  padding: 12%;
+  padding: 10%;
 }
 
 /* ページの内枠 */
@@ -113,22 +114,22 @@ body {
 }
 
 .cover .small {
-  font-size: 13px;
-  letter-spacing: 5px;
+  font-size: 11px;
+  letter-spacing: 4px;
   color: #888;
-  margin-bottom: 35px;
+  margin-bottom: 28px;
 }
 
 .cover h1 {
-  font-size: clamp(30px, 6vw, 52px);
+  font-size: clamp(25px, 5vw, 42px);
   font-weight: normal;
-  letter-spacing: 5px;
-  margin: 0 0 25px;
+  letter-spacing: 4px;
+  margin: 0 0 20px;
 }
 
 .cover .subtitle {
-  font-size: 12px;
-  letter-spacing: 4px;
+  font-size: 10px;
+  letter-spacing: 3px;
   color: #999;
 }
 
@@ -136,19 +137,29 @@ body {
 .story {
   width: 100%;
   text-align: center;
-  line-height: 2.3;
-  font-size: clamp(18px, 3.8vw, 28px);
-  letter-spacing: 2px;
+  line-height: 2.15;
+  font-size: clamp(15px, 3vw, 22px);
+  letter-spacing: 1.5px;
+
+  /* 文章そのものを中央に */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .story p {
-  margin: 0 0 30px;
+  margin: 0 0 24px;
+}
+
+.story p:last-of-type {
+  margin-bottom: 0;
 }
 
 .story .small {
-  font-size: 14px;
+  font-size: 12px;
   color: #999;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 .page-number {
@@ -158,7 +169,7 @@ body {
   right: 0;
   text-align: center;
   color: #aaa;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* 最後のページ */
@@ -169,10 +180,17 @@ body {
 .final-text {
   opacity: 0;
   text-align: center;
-  font-size: clamp(20px, 4vw, 30px);
-  line-height: 2.4;
-  letter-spacing: 2px;
-  transition: opacity 2s ease;
+  font-size: clamp(16px, 3.2vw, 23px);
+  line-height: 2.25;
+  letter-spacing: 1.5px;
+
+  /* 完全中央 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
 }
 
 .final-page.active .final-text {
@@ -181,12 +199,12 @@ body {
 
 .final-text .pause {
   display: block;
-  margin: 25px 0;
+  margin: 20px 0;
 }
 
 .final-star {
   display: block;
-  margin: 45px auto 0;
+  margin: 35px auto 0;
   width: 7px;
   height: 7px;
   background: #222;
@@ -221,8 +239,8 @@ body {
   text-align: center;
   color: rgba(255,255,255,.55);
   font-family: "Yu Mincho", serif;
-  font-size: 14px;
-  letter-spacing: 3px;
+  font-size: 12px;
+  letter-spacing: 2px;
   pointer-events: none;
   transition: opacity .5s;
 }
@@ -233,6 +251,7 @@ body {
 
 /* スマホ */
 @media (max-width: 600px) {
+
   .book {
     width: 76vw;
     height: 72vh;
@@ -243,24 +262,52 @@ body {
   }
 
   .page {
-    padding: 12%;
+    padding: 10%;
   }
 
   .story {
-    font-size: 19px;
-    line-height: 2.2;
+    font-size: 16px;
+    line-height: 2.05;
+    letter-spacing: 1px;
+  }
+
+  .story p {
+    margin-bottom: 20px;
+  }
+
+  .cover .small {
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-bottom: 22px;
   }
 
   .cover h1 {
-    font-size: 31px;
+    font-size: 26px;
+    letter-spacing: 3px;
+  }
+
+  .cover .subtitle {
+    font-size: 9px;
+  }
+
+  .final-text {
+    font-size: 17px;
+    line-height: 2.15;
+    letter-spacing: 1px;
+  }
+
+  .page-number {
+    bottom: 28px;
+    font-size: 11px;
   }
 
   .hint {
     bottom: 28px;
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 </style>
+
 </head>
 
 <body>
@@ -270,18 +317,22 @@ body {
 <div class="book" id="book">
 
   <!-- 表紙 -->
+
   <section class="page cover">
     <div>
       <div class="small">A STORY ABOUT ME</div>
 
-      <h1>私が始めた物語</h1>
+```
+  <h1>私が始めた物語</h1>
 
-      <div class="subtitle">MY STORY</div>
-    </div>
+  <div class="subtitle">MY STORY</div>
+</div>
+```
+
   </section>
 
-
   <!-- 1 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -290,12 +341,15 @@ body {
         あまり好きじゃなかった。
       </p>
 
-      <div class="page-number">1</div>
-    </div>
+```
+  <div class="page-number">1</div>
+</div>
+```
+
   </section>
 
-
   <!-- 2 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -304,18 +358,21 @@ body {
         増えた。
       </p>
 
-      <p>
-        そして私は、<br>
-        少しずつ<br>
-        「好き」を増やしていった。
-      </p>
+```
+  <p>
+    そして私は、<br>
+    少しずつ<br>
+    「好き」を増やしていった。
+  </p>
 
-      <div class="page-number">2</div>
-    </div>
+  <div class="page-number">2</div>
+</div>
+```
+
   </section>
 
-
   <!-- 3 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -325,12 +382,15 @@ body {
         少しずつ見えるようになった。
       </p>
 
-      <div class="page-number">3</div>
-    </div>
+```
+  <div class="page-number">3</div>
+</div>
+```
+
   </section>
 
-
   <!-- 4 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -338,26 +398,29 @@ body {
         言わないほうがいい。」
       </p>
 
-      <p>
-        そう思っていた私に、
-      </p>
+```
+  <p>
+    そう思っていた私に、
+  </p>
 
-      <p>
-        <strong>「どういうこと？」</strong><br>
-        <strong>「教えて？」</strong>
-      </p>
+  <p>
+    <strong>「どういうこと？」</strong><br>
+    <strong>「教えて？」</strong>
+  </p>
 
-      <p>
-        そうやって<br>
-        待ってくれる人がいた。
-      </p>
+  <p>
+    そうやって<br>
+    待ってくれる人がいた。
+  </p>
 
-      <div class="page-number">4</div>
-    </div>
+  <div class="page-number">4</div>
+</div>
+```
+
   </section>
 
-
   <!-- 5 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -365,35 +428,41 @@ body {
         伝えていい。
       </p>
 
-      <p>
-        時間がかかっても、<br>
-        自分の言葉で話していい。
-      </p>
+```
+  <p>
+    時間がかかっても、<br>
+    自分の言葉で話していい。
+  </p>
 
-      <div class="page-number">5</div>
-    </div>
+  <div class="page-number">5</div>
+</div>
+```
+
   </section>
 
-
   <!-- 6 -->
+
   <section class="page">
     <div class="story">
       <p>
         「これも、私じゃん。」
       </p>
 
-      <p>
-        周りと違うところも、<br>
-        不器用なところも、<br>
-        ぜんぶ私。
-      </p>
+```
+  <p>
+    周りと違うところも、<br>
+    不器用なところも、<br>
+    ぜんぶ私。
+  </p>
 
-      <div class="page-number">6</div>
-    </div>
+  <div class="page-number">6</div>
+</div>
+```
+
   </section>
 
-
   <!-- 7 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -401,18 +470,21 @@ body {
         いつも前向きではいられない。
       </p>
 
-      <p>
-        嫉妬したり、<br>
-        悩んだり、<br>
-        自分を嫌いになりそうな日もある。
-      </p>
+```
+  <p>
+    嫉妬したり、<br>
+    悩んだり、<br>
+    自分を嫌いになりそうな日もある。
+  </p>
 
-      <div class="page-number">7</div>
-    </div>
+  <div class="page-number">7</div>
+</div>
+```
+
   </section>
 
-
   <!-- 8 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -421,17 +493,20 @@ body {
         含めて、
       </p>
 
-      <p>
-        「これも私なんだ」って<br>
-        少しずつ思える。
-      </p>
+```
+  <p>
+    「これも私なんだ」って<br>
+    少しずつ思える。
+  </p>
 
-      <div class="page-number">8</div>
-    </div>
+  <div class="page-number">8</div>
+</div>
+```
+
   </section>
 
-
   <!-- 9 -->
+
   <section class="page">
     <div class="story">
       <p>
@@ -439,59 +514,68 @@ body {
         少しずつ変わっていく。
       </p>
 
-      <p>
-        誰かになったんじゃない。
-      </p>
+```
+  <p>
+    誰かになったんじゃない。
+  </p>
 
-      <p>
-        <strong>私が、私になっていく。</strong>
-      </p>
+  <p>
+    <strong>私が、私になっていく。</strong>
+  </p>
 
-      <div class="page-number">9</div>
-    </div>
+  <div class="page-number">9</div>
+</div>
+```
+
   </section>
 
-
   <!-- 10 -->
+
   <section class="page">
     <div class="story">
       <p>
         ここまで来た私へ。
       </p>
 
-      <p>
-        よく頑張ったね。
-      </p>
+```
+  <p>
+    よく頑張ったね。
+  </p>
 
-      <p>
-        これからも、<br>
-        自分の物語を<br>
-        自分の言葉で書いていこう。
-      </p>
+  <p>
+    これからも、<br>
+    自分の物語を<br>
+    自分の言葉で書いていこう。
+  </p>
 
-      <div class="page-number">10</div>
-    </div>
+  <div class="page-number">10</div>
+</div>
+```
+
   </section>
 
-
   <!-- 最終ページ -->
+
   <section class="page final-page" id="finalPage">
     <div class="final-text">
 
-      この先は、まだ書かれていない。
+```
+  この先は、まだ書かれていない。
 
-      <span class="pause">
-        だって――
-      </span>
+  <span class="pause">
+    だって――
+  </span>
 
-      私の物語は、<br>
-      まだまだ続いている。
+  私の物語は、<br>
+  まだまだ続いている。
 
-      <span class="final-star"></span>
+  <span class="final-star"></span>
 
-    </div>
+</div>
 
-    <div class="page-number">11</div>
+<div class="page-number">11</div>
+```
+
   </section>
 
 </div>
@@ -499,7 +583,6 @@ body {
 <div class="hint" id="hint">
   画面をタップして、ページをめくる
 </div>
-
 
 <script>
 
