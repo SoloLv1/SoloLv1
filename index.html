@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,15 +19,15 @@ html, body {
 
 body {
   background:
-    radial-gradient(circle at center, #26344d 0%, #111827 45%, #070b12 100%);
-  color: #f5f2ea;
-  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    radial-gradient(circle at 50% 20%, #18243b 0%, #080d17 55%, #03060b 100%);
+  color: #292722;
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* 星空 */
+/* 星 */
 .stars {
   position: fixed;
   inset: 0;
@@ -38,8 +37,8 @@ body {
 
 .star {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 3px;
+  height: 3px;
   background: white;
   border-radius: 50%;
   opacity: 0.65;
@@ -48,7 +47,7 @@ body {
 
 @keyframes twinkle {
   0%, 100% {
-    opacity: 0.2;
+    opacity: 0.25;
   }
   50% {
     opacity: 0.9;
@@ -58,206 +57,207 @@ body {
 /* 本 */
 .book {
   position: relative;
-  width: min(88vw, 700px);
-  height: min(72vh, 500px);
+  width: min(75vw, 620px);
+  height: min(78vh, 820px);
   perspective: 1800px;
 }
 
+/* ページ */
 .page {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,0.04),
-      transparent 12%,
-      transparent 88%,
-      rgba(0,0,0,0.06)
-    ),
-    #f7f3e8;
-  color: #292722;
-  border-radius: 4px 10px 10px 4px;
+
+  background: #faf9f5;
+
+  border-radius: 14px;
+
   box-shadow:
-    0 20px 50px rgba(0,0,0,0.45),
-    inset 0 0 25px rgba(70,50,30,0.08);
-  padding: clamp(30px, 7vw, 65px);
+    0 20px 45px rgba(0,0,0,0.35),
+    inset 0 0 0 2px #eeeae1;
+
+  transform-origin: left center;
+
+  transition:
+    transform 1s cubic-bezier(.65,.05,.25,1),
+    box-shadow 1s ease;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  overflow: hidden;
+
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  transform-origin: left center;
-  transition:
-    transform 1s cubic-bezier(.77,0,.18,1),
-    opacity .5s ease;
+
+  padding: 12%;
 }
 
-.page::after {
+/* ページの内枠 */
+.page::before {
   content: "";
   position: absolute;
-  inset: 12px;
-  border: 1px solid rgba(80,65,45,0.12);
+  inset: 28px;
+  border: 2px solid #e8e3da;
   pointer-events: none;
 }
 
+/* めくったページ */
 .page.flipped {
   transform: rotateY(-180deg);
-  pointer-events: none;
 }
 
+/* 表紙 */
 .cover {
-  background:
-    linear-gradient(rgba(20,28,40,0.08), rgba(20,28,40,0.08)),
-    #182334;
-  color: #eee9dd;
-  box-shadow:
-    0 25px 60px rgba(0,0,0,0.55),
-    inset 0 0 35px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.cover .small {
+  font-size: 13px;
+  letter-spacing: 5px;
+  color: #888;
+  margin-bottom: 35px;
 }
 
 .cover h1 {
-  font-size: clamp(28px, 6vw, 48px);
-  letter-spacing: 0.15em;
-  margin: 0 0 18px;
+  font-size: clamp(30px, 6vw, 52px);
   font-weight: normal;
+  letter-spacing: 5px;
+  margin: 0 0 25px;
 }
 
-.cover p {
+.cover .subtitle {
   font-size: 12px;
-  letter-spacing: 0.28em;
-  opacity: .7;
+  letter-spacing: 4px;
+  color: #999;
 }
 
-.cover .line {
-  width: 80px;
-  height: 1px;
-  background: rgba(255,255,255,.5);
-  margin: 18px 0;
+/* 本文 */
+.story {
+  width: 100%;
+  text-align: center;
+  line-height: 2.3;
+  font-size: clamp(18px, 3.8vw, 28px);
+  letter-spacing: 2px;
 }
 
-.chapter {
-  font-size: 11px;
-  letter-spacing: .25em;
-  opacity: .55;
-  margin-bottom: 22px;
+.story p {
+  margin: 0 0 30px;
 }
 
-.page h2 {
-  font-size: clamp(20px, 4vw, 30px);
-  font-weight: normal;
-  letter-spacing: .12em;
-  margin: 0 0 28px;
-}
-
-.page p {
-  max-width: 520px;
-  font-size: clamp(13px, 2.5vw, 16px);
-  line-height: 2.2;
-  letter-spacing: .08em;
-  margin: 0;
+.story .small {
+  font-size: 14px;
+  color: #999;
+  letter-spacing: 3px;
 }
 
 .page-number {
   position: absolute;
-  bottom: 20px;
-  font-family: serif;
-  font-size: 11px;
-  opacity: .35;
-}
-
-.last-page {
-  background: #fbfaf7;
-}
-
-.last-page h2 {
-  opacity: 0;
-  animation: appear 2s ease forwards;
-  animation-delay: 1.2s;
-}
-
-.last-page p {
-  opacity: 0;
-  animation: appear 2s ease forwards;
-  animation-delay: 2.8s;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.final-message {
-  font-size: clamp(22px, 5vw, 38px) !important;
-  line-height: 1.8 !important;
-  letter-spacing: .12em !important;
-  margin-top: 25px !important;
-  opacity: 0;
-  animation: appear 2.5s ease forwards;
-  animation-delay: 4.5s;
-}
-
-.final-star {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 12px white;
-  opacity: 0;
-  animation: finalStar 3s ease forwards;
-  animation-delay: 5.8s;
-}
-
-@keyframes finalStar {
-  0% {
-    opacity: 0;
-    transform: scale(.3);
-  }
-  40% {
-    opacity: 1;
-    transform: scale(1.4);
-  }
-  100% {
-    opacity: .8;
-    transform: scale(1);
-  }
-}
-
-.hint {
-  position: fixed;
-  bottom: 22px;
+  bottom: 34px;
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 11px;
-  letter-spacing: .18em;
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* 最後のページ */
+.final-page {
+  background: #fffefa;
+}
+
+.final-text {
+  opacity: 0;
+  text-align: center;
+  font-size: clamp(20px, 4vw, 30px);
+  line-height: 2.4;
+  letter-spacing: 2px;
+  transition: opacity 2s ease;
+}
+
+.final-page.active .final-text {
+  opacity: 1;
+}
+
+.final-text .pause {
+  display: block;
+  margin: 25px 0;
+}
+
+.final-star {
+  display: block;
+  margin: 45px auto 0;
+  width: 7px;
+  height: 7px;
+  background: #222;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 15px rgba(255,255,255,.8);
+  transition: opacity 2s ease;
+}
+
+.final-page.active .final-star {
+  opacity: 1;
+  animation: finalTwinkle 2.5s infinite;
+}
+
+@keyframes finalTwinkle {
+  0%, 100% {
+    transform: scale(.7);
+    opacity: .4;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+/* 下の案内 */
+.hint {
+  position: fixed;
+  bottom: 38px;
+  left: 0;
+  right: 0;
+  text-align: center;
   color: rgba(255,255,255,.55);
-  animation: hintFade 3s ease-in-out infinite;
+  font-family: "Yu Mincho", serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+  pointer-events: none;
+  transition: opacity .5s;
 }
 
-@keyframes hintFade {
-  0%, 100% { opacity: .35; }
-  50% { opacity: .8; }
+.hint.hide {
+  opacity: 0;
 }
 
+/* スマホ */
 @media (max-width: 600px) {
   .book {
-    width: 88vw;
-    height: 65vh;
+    width: 76vw;
+    height: 72vh;
+  }
+
+  .page::before {
+    inset: 24px;
   }
 
   .page {
-    padding: 35px 25px;
+    padding: 12%;
   }
 
-  .page p {
-    line-height: 2;
+  .story {
+    font-size: 19px;
+    line-height: 2.2;
+  }
+
+  .cover h1 {
+    font-size: 31px;
+  }
+
+  .hint {
+    bottom: 28px;
+    font-size: 12px;
   }
 }
 </style>
@@ -271,209 +271,343 @@ body {
 
   <!-- 表紙 -->
   <section class="page cover">
-    <h1>私が始めた物語</h1>
-    <div class="line"></div>
-    <p>MY STORY</p>
+    <div>
+      <div class="small">A STORY ABOUT ME</div>
+
+      <h1>私が始めた物語</h1>
+
+      <div class="subtitle">MY STORY</div>
+    </div>
   </section>
+
 
   <!-- 1 -->
   <section class="page">
-    <div class="chapter">PROLOGUE</div>
-    <h2>私は、自分のことが<br>あまり好きじゃなかった。</h2>
-    <p>
-      人と少し違っていて。<br>
-      うまく言葉にできなくて。<br>
-      伝えたいことが、伝わらなくて。<br><br>
-      そんな自分を、少しずつ<br>
-      諦めようとしていた。
-    </p>
-    <div class="page-number">01</div>
+    <div class="story">
+      <p>
+        私は、<br>
+        自分のことが<br>
+        あまり好きじゃなかった。
+      </p>
+
+      <div class="page-number">1</div>
+    </div>
   </section>
+
 
   <!-- 2 -->
   <section class="page">
-    <div class="chapter">CHAPTER 01</div>
-    <h2>でも、ひとりの人に出会った。</h2>
-    <p>
-      何気なく始まった「好き」が、<br>
-      少しずつ私の毎日を変えていった。<br><br>
-      笑ったり、夢中になったり。<br>
-      気づけば、その人を見つけることが<br>
-      楽しみになっていた。
-    </p>
-    <div class="page-number">02</div>
+    <div class="story">
+      <p>
+        そんな私の毎日に、<br>
+        ひとりの人が<br>
+        増えた。
+      </p>
+
+      <p>
+        そして私は、<br>
+        少しずつ<br>
+        「好き」を増やしていった。
+      </p>
+
+      <div class="page-number">2</div>
+    </div>
   </section>
+
 
   <!-- 3 -->
   <section class="page">
-    <div class="chapter">CHAPTER 02</div>
-    <h2>「好き」が、増えていった。</h2>
-    <p>
-      声が好き。<br>
-      笑っているところが好き。<br>
-      真剣なところも、ふざけているところも。<br><br>
-      「嫌い」が減って、<br>
-      「好き」が少しずつ増えていった。
-    </p>
-    <div class="page-number">03</div>
+    <div class="story">
+      <p>
+        好きなものが増えると、<br>
+        不思議なことに<br>
+        自分のことも<br>
+        少しずつ見えるようになった。
+      </p>
+
+      <div class="page-number">3</div>
+    </div>
   </section>
+
 
   <!-- 4 -->
   <section class="page">
-    <div class="chapter">CHAPTER 03</div>
-    <h2>伝わらなくても、伝えていい。</h2>
-    <p>
-      「どういうこと？」<br>
-      「教えて？」<br><br>
-      その言葉を知って、<br>
-      私は少しずつ思えるようになった。<br><br>
-      自分の気持ちを話してもいいんだって。
-    </p>
-    <div class="page-number">04</div>
+    <div class="story">
+      <p>
+        「伝わらないなら、<br>
+        言わないほうがいい。」
+      </p>
+
+      <p>
+        そう思っていた私に、
+      </p>
+
+      <p>
+        <strong>「どういうこと？」</strong><br>
+        <strong>「教えて？」</strong>
+      </p>
+
+      <p>
+        そうやって<br>
+        待ってくれる人がいた。
+      </p>
+
+      <div class="page-number">4</div>
+    </div>
   </section>
+
 
   <!-- 5 -->
   <section class="page">
-    <div class="chapter">CHAPTER 04</div>
-    <h2>これも、私じゃん。</h2>
-    <p>
-      人と違っていてもいい。<br>
-      少しズレていてもいい。<br><br>
-      完璧じゃなくてもいい。<br><br>
-      「今の私も、私。」<br>
-      そう思える日が、少しずつ増えていった。
-    </p>
-    <div class="page-number">05</div>
+    <div class="story">
+      <p>
+        伝わらなくても、<br>
+        伝えていい。
+      </p>
+
+      <p>
+        時間がかかっても、<br>
+        自分の言葉で話していい。
+      </p>
+
+      <div class="page-number">5</div>
+    </div>
   </section>
+
 
   <!-- 6 -->
   <section class="page">
-    <div class="chapter">CHAPTER 05</div>
-    <h2>それでも、私は揺れる。</h2>
-    <p>
-      嬉しい日もあれば、<br>
-      モヤモヤする日もある。<br><br>
-      嫉妬したり、落ち込んだり、<br>
-      「もう！！」って思う日だってある。<br><br>
-      でも、それも私。
-    </p>
-    <div class="page-number">06</div>
+    <div class="story">
+      <p>
+        「これも、私じゃん。」
+      </p>
+
+      <p>
+        周りと違うところも、<br>
+        不器用なところも、<br>
+        ぜんぶ私。
+      </p>
+
+      <div class="page-number">6</div>
+    </div>
   </section>
+
 
   <!-- 7 -->
   <section class="page">
-    <div class="chapter">CHAPTER 06</div>
-    <h2>嫌な感情があっても、<br>自分を嫌いにならない。</h2>
-    <p>
-      すべての感情を<br>
-      消さなくてもいい。<br><br>
-      ただ、その感情に<br>
-      私の全部を決めさせなくていい。<br><br>
-      そう思えるようになった。
-    </p>
-    <div class="page-number">07</div>
+    <div class="story">
+      <p>
+        もちろん、<br>
+        いつも前向きではいられない。
+      </p>
+
+      <p>
+        嫉妬したり、<br>
+        悩んだり、<br>
+        自分を嫌いになりそうな日もある。
+      </p>
+
+      <div class="page-number">7</div>
+    </div>
   </section>
+
 
   <!-- 8 -->
   <section class="page">
-    <div class="chapter">CHAPTER 07</div>
-    <h2>私は、少しずつ変わっていく。</h2>
-    <p>
-      昨日より少しだけ自分を好きになる。<br>
-      昨日より少しだけ自分を許してあげる。<br><br>
-      大きな変化じゃなくていい。<br>
-      一ページずつでいい。
-    </p>
-    <div class="page-number">08</div>
+    <div class="story">
+      <p>
+        でも今は、<br>
+        そんな感情があることも<br>
+        含めて、
+      </p>
+
+      <p>
+        「これも私なんだ」って<br>
+        少しずつ思える。
+      </p>
+
+      <div class="page-number">8</div>
+    </div>
   </section>
+
 
   <!-- 9 -->
   <section class="page">
-    <div class="chapter">CHAPTER 08</div>
-    <h2>ここまで来た私へ。</h2>
-    <p>
-      よく頑張ったね。<br><br>
-      うまく言葉にできない日も、<br>
-      自分が嫌になる日も、<br>
-      それでも前に進もうとした。<br><br>
-      だから私は、今の私を<br>
-      ちゃんと抱きしめてあげたい。
-    </p>
-    <div class="page-number">09</div>
+    <div class="story">
+      <p>
+        私は、<br>
+        少しずつ変わっていく。
+      </p>
+
+      <p>
+        誰かになったんじゃない。
+      </p>
+
+      <p>
+        <strong>私が、私になっていく。</strong>
+      </p>
+
+      <div class="page-number">9</div>
+    </div>
   </section>
+
 
   <!-- 10 -->
   <section class="page">
-    <div class="chapter">CHAPTER 09</div>
-    <h2>物語は、ここで終わらない。</h2>
-    <p>
-      ここまでのページには、<br>
-      今までの私がいる。<br><br>
-      でも、この先のページには<br>
-      まだ何も書かれていない。
-    </p>
-    <div class="page-number">10</div>
+    <div class="story">
+      <p>
+        ここまで来た私へ。
+      </p>
+
+      <p>
+        よく頑張ったね。
+      </p>
+
+      <p>
+        これからも、<br>
+        自分の物語を<br>
+        自分の言葉で書いていこう。
+      </p>
+
+      <div class="page-number">10</div>
+    </div>
   </section>
 
-  <!-- 白紙 -->
-  <section class="page last-page">
-    <h2>この先は、まだ書かれていない。</h2>
 
-    <p>
-      だって――
-    </p>
+  <!-- 最終ページ -->
+  <section class="page final-page" id="finalPage">
+    <div class="final-text">
 
-    <p class="final-message">
+      この先は、まだ書かれていない。
+
+      <span class="pause">
+        だって――
+      </span>
+
       私の物語は、<br>
       まだまだ続いている。
-    </p>
 
-    <div class="final-star"></div>
+      <span class="final-star"></span>
+
+    </div>
 
     <div class="page-number">11</div>
   </section>
 
 </div>
 
-<div class="hint">
+<div class="hint" id="hint">
   画面をタップして、ページをめくる
 </div>
 
+
 <script>
 
-/* 星空を作る */
+/* 星を作る */
 const stars = document.getElementById("stars");
 
-for (let i = 0; i < 90; i++) {
-  const star = document.createElement("div");
+for (let i = 0; i < 45; i++) {
+
+  const star = document.createElement("span");
+
   star.className = "star";
 
   star.style.left = Math.random() * 100 + "%";
   star.style.top = Math.random() * 100 + "%";
-  star.style.animationDelay = Math.random() * 3 + "s";
+
+  star.style.animationDelay =
+    Math.random() * 3 + "s";
 
   stars.appendChild(star);
 }
 
-/* ページめくり */
-const pages = document.querySelectorAll(".page");
+
+/* ページ */
+const pages = Array.from(
+  document.querySelectorAll(".page")
+);
+
+const finalPage =
+  document.getElementById("finalPage");
+
+const hint =
+  document.getElementById("hint");
+
 let currentPage = 0;
 
+
+/*
+  最初の状態を明示的に設定。
+
+  最後のページが前に出ないように
+  ページ番号が大きいほど
+  z-indexを高くする。
+*/
+pages.forEach((page, index) => {
+
+  page.style.zIndex = pages.length - index;
+
+});
+
+
+/* ページをめくる */
 function nextPage() {
 
-  if (currentPage < pages.length - 1) {
-    pages[currentPage].classList.add("flipped");
-    currentPage++;
+  if (currentPage >= pages.length - 1) {
+    return;
+  }
+
+  pages[currentPage].classList.add("flipped");
+
+  currentPage++;
+
+  /* 最後のページに到達 */
+  if (currentPage === pages.length - 1) {
+
+    setTimeout(() => {
+
+      finalPage.classList.add("active");
+
+      hint.classList.add("hide");
+
+    }, 700);
+
   }
 
 }
 
-document.body.addEventListener("click", nextPage);
 
-document.body.addEventListener("touchend", nextPage);
+/* タップ */
+document.addEventListener("click", () => {
+
+  nextPage();
+
+});
+
+
+/* スワイプ */
+let startX = 0;
+
+document.addEventListener("touchstart", (event) => {
+
+  startX = event.touches[0].clientX;
+
+});
+
+
+document.addEventListener("touchend", (event) => {
+
+  const endX = event.changedTouches[0].clientX;
+
+  const difference = startX - endX;
+
+  if (difference > 50) {
+    nextPage();
+  }
+
+});
 
 </script>
 
 </body>
 </html>
-```
