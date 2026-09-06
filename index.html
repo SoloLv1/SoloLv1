@@ -1,696 +1,119 @@
-<!DOCTYPE html>
-
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>私が始めた物語</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  background:
-    radial-gradient(circle at 50% 20%, #18243b 0%, #080d17 55%, #03060b 100%);
-  color: #292722;
-  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* 星 */
-.stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.star {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.65;
-  animation: twinkle 3s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.25;
-  }
-  50% {
-    opacity: 0.9;
-  }
-}
-
-/* 本 */
-.book {
-  position: relative;
-  width: min(75vw, 620px);
-  height: min(78vh, 820px);
-  perspective: 1800px;
-}
-
-/* ページ */
-.page {
-  position: absolute;
-  inset: 0;
-
-  background: #faf9f5;
-
-  border-radius: 14px;
-
-  box-shadow:
-    0 20px 45px rgba(0,0,0,0.35),
-    inset 0 0 0 2px #eeeae1;
-
-  transform-origin: left center;
-
-  transition:
-    transform 1s cubic-bezier(.65,.05,.25,1),
-    box-shadow 1s ease;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-
-  overflow: hidden;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 10%;
-}
-
-/* ページの内枠 */
-.page::before {
-  content: "";
-  position: absolute;
-  inset: 28px;
-  border: 2px solid #e8e3da;
-  pointer-events: none;
-}
-
-/* めくったページ */
-.page.flipped {
-  transform: rotateY(-180deg);
-}
-
-/* 表紙 */
-.cover {
-  text-align: center;
-}
-
-.cover .small {
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: #888;
-  margin-bottom: 28px;
-}
-
-.cover h1 {
-  font-size: clamp(25px, 5vw, 42px);
-  font-weight: normal;
-  letter-spacing: 4px;
-  margin: 0 0 20px;
-}
-
-.cover .subtitle {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: #999;
-}
-
 /* 本文 */
 .story {
-  width: 100%;
-  text-align: center;
-  line-height: 2.15;
-  font-size: clamp(15px, 3vw, 22px);
-  letter-spacing: 1.5px;
+width: 100%;
+text-align: center;
+line-height: 2;
+font-size: clamp(12px, 2.2vw, 16px);
+letter-spacing: 1px;
 
-  /* 文章そのものを中央に */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 .story p {
-  margin: 0 0 24px;
+margin: 0 0 20px;
 }
 
 .story p:last-of-type {
-  margin-bottom: 0;
+margin-bottom: 0;
 }
 
 .story .small {
-  font-size: 12px;
-  color: #999;
-  letter-spacing: 2px;
+font-size: 10px;
+color: #999;
+letter-spacing: 2px;
 }
 
-.page-number {
-  position: absolute;
-  bottom: 34px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #aaa;
-  font-size: 12px;
+/* 表紙 */
+.cover .small {
+font-size: 9px;
+letter-spacing: 3px;
+color: #888;
+margin-bottom: 22px;
+}
+
+.cover h1 {
+font-size: clamp(22px, 4vw, 34px);
+font-weight: normal;
+letter-spacing: 3px;
+margin: 0 0 16px;
+}
+
+.cover .subtitle {
+font-size: 9px;
+letter-spacing: 2px;
+color: #999;
 }
 
 /* 最後のページ */
-.final-page {
-  background: #fffefa;
-}
-
 .final-text {
-  opacity: 0;
-  text-align: center;
-  font-size: clamp(16px, 3.2vw, 23px);
-  line-height: 2.25;
-  letter-spacing: 1.5px;
+opacity: 0;
+text-align: center;
+font-size: clamp(13px, 2.4vw, 17px);
+line-height: 2.1;
+letter-spacing: 1px;
 
-  /* 完全中央 */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
-  width: 100%;
+width: 100%;
 }
 
-.final-page.active .final-text {
-  opacity: 1;
-}
-
-.final-text .pause {
-  display: block;
-  margin: 20px 0;
-}
-
-.final-star {
-  display: block;
-  margin: 35px auto 0;
-  width: 7px;
-  height: 7px;
-  background: #222;
-  border-radius: 50%;
-  opacity: 0;
-  box-shadow: 0 0 15px rgba(255,255,255,.8);
-  transition: opacity 2s ease;
-}
-
-.final-page.active .final-star {
-  opacity: 1;
-  animation: finalTwinkle 2.5s infinite;
-}
-
-@keyframes finalTwinkle {
-  0%, 100% {
-    transform: scale(.7);
-    opacity: .4;
-  }
-  50% {
-    transform: scale(1.4);
-    opacity: 1;
-  }
-}
-
-/* 下の案内 */
-.hint {
-  position: fixed;
-  bottom: 38px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: rgba(255,255,255,.55);
-  font-family: "Yu Mincho", serif;
-  font-size: 12px;
-  letter-spacing: 2px;
-  pointer-events: none;
-  transition: opacity .5s;
-}
-
-.hint.hide {
-  opacity: 0;
+/* ページ番号 */
+.page-number {
+position: absolute;
+bottom: 34px;
+left: 0;
+right: 0;
+text-align: center;
+color: #aaa;
+font-size: 10px;
 }
 
 /* スマホ */
 @media (max-width: 600px) {
 
-  .book {
-    width: 76vw;
-    height: 72vh;
-  }
-
-  .page::before {
-    inset: 24px;
-  }
-
-  .page {
-    padding: 10%;
-  }
-
-  .story {
-    font-size: 16px;
-    line-height: 2.05;
-    letter-spacing: 1px;
-  }
-
-  .story p {
-    margin-bottom: 20px;
-  }
-
-  .cover .small {
-    font-size: 9px;
-    letter-spacing: 3px;
-    margin-bottom: 22px;
-  }
-
-  .cover h1 {
-    font-size: 26px;
-    letter-spacing: 3px;
-  }
-
-  .cover .subtitle {
-    font-size: 9px;
-  }
-
-  .final-text {
-    font-size: 17px;
-    line-height: 2.15;
-    letter-spacing: 1px;
-  }
-
-  .page-number {
-    bottom: 28px;
-    font-size: 11px;
-  }
-
-  .hint {
-    bottom: 28px;
-    font-size: 11px;
-  }
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="stars" id="stars"></div>
-
-<div class="book" id="book">
-
-  <!-- 表紙 -->
-
-  <section class="page cover">
-    <div>
-      <div class="small">A STORY ABOUT ME</div>
-
-```
-  <h1>私が始めた物語</h1>
-
-  <div class="subtitle">MY STORY</div>
-</div>
-```
-
-  </section>
-
-  <!-- 1 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        私は、<br>
-        自分のことが<br>
-        あまり好きじゃなかった。
-      </p>
-
-```
-  <div class="page-number">1</div>
-</div>
-```
-
-  </section>
-
-  <!-- 2 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        そんな私の毎日に、<br>
-        ひとりの人が<br>
-        増えた。
-      </p>
-
-```
-  <p>
-    そして私は、<br>
-    少しずつ<br>
-    「好き」を増やしていった。
-  </p>
-
-  <div class="page-number">2</div>
-</div>
-```
-
-  </section>
-
-  <!-- 3 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        好きなものが増えると、<br>
-        不思議なことに<br>
-        自分のことも<br>
-        少しずつ見えるようになった。
-      </p>
-
-```
-  <div class="page-number">3</div>
-</div>
-```
-
-  </section>
-
-  <!-- 4 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        「伝わらないなら、<br>
-        言わないほうがいい。」
-      </p>
-
-```
-  <p>
-    そう思っていた私に、
-  </p>
-
-  <p>
-    <strong>「どういうこと？」</strong><br>
-    <strong>「教えて？」</strong>
-  </p>
-
-  <p>
-    そうやって<br>
-    待ってくれる人がいた。
-  </p>
-
-  <div class="page-number">4</div>
-</div>
-```
-
-  </section>
-
-  <!-- 5 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        伝わらなくても、<br>
-        伝えていい。
-      </p>
-
-```
-  <p>
-    時間がかかっても、<br>
-    自分の言葉で話していい。
-  </p>
-
-  <div class="page-number">5</div>
-</div>
-```
-
-  </section>
-
-  <!-- 6 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        「これも、私じゃん。」
-      </p>
-
-```
-  <p>
-    周りと違うところも、<br>
-    不器用なところも、<br>
-    ぜんぶ私。
-  </p>
-
-  <div class="page-number">6</div>
-</div>
-```
-
-  </section>
-
-  <!-- 7 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        もちろん、<br>
-        いつも前向きではいられない。
-      </p>
-
-```
-  <p>
-    嫉妬したり、<br>
-    悩んだり、<br>
-    自分を嫌いになりそうな日もある。
-  </p>
-
-  <div class="page-number">7</div>
-</div>
-```
-
-  </section>
-
-  <!-- 8 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        でも今は、<br>
-        そんな感情があることも<br>
-        含めて、
-      </p>
-
-```
-  <p>
-    「これも私なんだ」って<br>
-    少しずつ思える。
-  </p>
-
-  <div class="page-number">8</div>
-</div>
-```
-
-  </section>
-
-  <!-- 9 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        私は、<br>
-        少しずつ変わっていく。
-      </p>
-
-```
-  <p>
-    誰かになったんじゃない。
-  </p>
-
-  <p>
-    <strong>私が、私になっていく。</strong>
-  </p>
-
-  <div class="page-number">9</div>
-</div>
-```
-
-  </section>
-
-  <!-- 10 -->
-
-  <section class="page">
-    <div class="story">
-      <p>
-        ここまで来た私へ。
-      </p>
-
-```
-  <p>
-    よく頑張ったね。
-  </p>
-
-  <p>
-    これからも、<br>
-    自分の物語を<br>
-    自分の言葉で書いていこう。
-  </p>
-
-  <div class="page-number">10</div>
-</div>
-```
-
-  </section>
-
-  <!-- 最終ページ -->
-
-  <section class="page final-page" id="finalPage">
-    <div class="final-text">
-
-```
-  この先は、まだ書かれていない。
-
-  <span class="pause">
-    だって――
-  </span>
-
-  私の物語は、<br>
-  まだまだ続いている。
-
-  <span class="final-star"></span>
-
-</div>
-
-<div class="page-number">11</div>
-```
-
-  </section>
-
-</div>
-
-<div class="hint" id="hint">
-  画面をタップして、ページをめくる
-</div>
-
-<script>
-
-/* 星を作る */
-const stars = document.getElementById("stars");
-
-for (let i = 0; i < 45; i++) {
-
-  const star = document.createElement("span");
-
-  star.className = "star";
-
-  star.style.left = Math.random() * 100 + "%";
-  star.style.top = Math.random() * 100 + "%";
-
-  star.style.animationDelay =
-    Math.random() * 3 + "s";
-
-  stars.appendChild(star);
+.story {
+font-size: 13px;
+line-height: 2;
+letter-spacing: 0.8px;
 }
 
-
-/* ページ */
-const pages = Array.from(
-  document.querySelectorAll(".page")
-);
-
-const finalPage =
-  document.getElementById("finalPage");
-
-const hint =
-  document.getElementById("hint");
-
-let currentPage = 0;
-
-
-/*
-  最初の状態を明示的に設定。
-
-  最後のページが前に出ないように
-  ページ番号が大きいほど
-  z-indexを高くする。
-*/
-pages.forEach((page, index) => {
-
-  page.style.zIndex = pages.length - index;
-
-});
-
-
-/* ページをめくる */
-function nextPage() {
-
-  if (currentPage >= pages.length - 1) {
-    return;
-  }
-
-  pages[currentPage].classList.add("flipped");
-
-  currentPage++;
-
-  /* 最後のページに到達 */
-  if (currentPage === pages.length - 1) {
-
-    setTimeout(() => {
-
-      finalPage.classList.add("active");
-
-      hint.classList.add("hide");
-
-    }, 700);
-
-  }
-
+.story p {
+margin-bottom: 18px;
 }
 
+.cover .small {
+font-size: 8px;
+letter-spacing: 2.5px;
+}
 
-/* タップ */
-document.addEventListener("click", () => {
+.cover h1 {
+font-size: 22px;
+letter-spacing: 2px;
+}
 
-  nextPage();
+.cover .subtitle {
+font-size: 8px;
+}
 
-});
+.final-text {
+font-size: 14px;
+line-height: 2.1;
+letter-spacing: 0.8px;
+}
 
+.page-number {
+bottom: 27px;
+font-size: 9px;
+}
 
-/* スワイプ */
-let startX = 0;
-
-document.addEventListener("touchstart", (event) => {
-
-  startX = event.touches[0].clientX;
-
-});
-
-
-document.addEventListener("touchend", (event) => {
-
-  const endX = event.changedTouches[0].clientX;
-
-  const difference = startX - endX;
-
-  if (difference > 50) {
-    nextPage();
-  }
-
-});
-
-</script>
-
-</body>
-</html>
+.hint {
+bottom: 28px;
+font-size: 10px;
+}
+}
